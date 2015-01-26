@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem{Bertsekas1989}
+Bertsekas, D., Tsitsiklis, J.N.: {P}arallel and distributed computation:
+  {N}umerical methods.
+\newblock Prentice Hall (1989)
+
+\bibitem{Boyd2004}
+Boyd, S., Vandenberghe, L.: {C}onvex {O}ptimization.
+\newblock University {P}ress, Cambridge (2004)
+
+\bibitem{Domahidi2012}
+Domahidi, A., Zgraggen, A., Zeilinger, M., Morari, M., Jones, C.: Efficient
+  {I}nterior {P}oint {M}ethods for {M}ultistage {P}roblems {A}rising in
+  {R}eceding {H}orizon {C}ontrol.
+\newblock In: IEEE Conference on Decision and Control (CDC), pp. 668 -- 674.
+  Maui, HI, USA (2012)
+
+\bibitem{Klintberg2014}
+Klintberg, E., Gros, S.: A primal-dual newton method for distributed quadratic
+  programming.
+\newblock In: Conference on Decision and Control (2014)
+
+\bibitem{Kozma2014a}
+Kozma, A., Klintberg, E., Gros, S., Diehl, M.: An improved distributed dual
+  {N}ewton-{CG} method for convex quadratic programming problems.
+\newblock In: American Control Conference (2014)
+
+\bibitem{Necoara2009a}
+Necoara, I., Suykens, J.: An interior-point {L}agrangian decomposition method
+  for separable convex optimization.
+\newblock J. Optim. Theory and Appl. \textbf{143}(3), 567--588 (2009)
+
+\bibitem{Wright1997}
+Wright, S.: {P}rimal-{D}ual {I}nterior-{P}oint {M}ethods.
+\newblock {SIAM} Publications, Philadelphia (1997)
+
+\end{thebibliography}
