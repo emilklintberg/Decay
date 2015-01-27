@@ -373,7 +373,7 @@ The row and column absolute sums of Jacobians of equality constraints (i.e. (\re
 \end{assumption}
 It should be observed that Assumption \ref{a:BoundedData} is not by any means restrictive, since any solver would struggle with a problem where it is not fulfilled. 
 
-Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{}. This might occur since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{}. Moreover, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ is lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not restrictive to assume boundedness of $\Phi_k^{-1}$ which we do next:
+Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{}. This might occur since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{}. Moreover, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ is lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not unrealistic to assume boundedness of $\Phi_k^{-1}$ which we do next:
 \begin{assumption} \label{a:BoundedConditioning}
 The row and column absolute sums of $\Phi_k^{-1}$ are bounded. Hence:
 \begin{equation}
@@ -411,11 +411,10 @@ where $T_{i,j} \in \mathbb{R}^{l_{k} \times l_{k}}$, we can establish the follow
 The off-diagonal blocks (i.e. $T_{i,j}$ where $i - j > 0$) in $\Lambda_k^{-1}$ satisfy the following bounds:
 \begin{subequations} \label{e:decayofLambda}
 \begin{align}
-& \| T_{i,j} \|_\infty \leq K_{\Lambda_k} \omega_{\Lambda_k}^{i - j} \\
-& \| T_{i,j} \|_1 \leq K_{\Lambda_k} \omega_{\Lambda_k}^{i - j}
+\| T_{i,j} \|_\bullet \leq K_{\Lambda_k} \omega_{\Lambda_k}^{i - j} \\
 \end{align}
 \end{subequations}
-where $\sigma_{\min}(\Lambda_k)$ and $\kappa_{\Lambda_k}$ are the the smallest singular value and the condition number of $\Lambda_k$ respectively, $K_{\Lambda_k} = \max \{ \sigma_{\min}(\Lambda_k)^{-1}, 1 + \sqrt{\kappa_{\Lambda_k}} \} l_k \omega_{\Lambda_k}^{1/l_k}$ and $\omega_{\Lambda_k} = \left( \frac{\sqrt{\kappa_{\Lambda_k}} - 1}{\sqrt{\kappa_{\Lambda_k}} + 1} \right)^{\frac{1}{3}}$.
+where $\bullet$ represents $\infty$ and $1$, $\sigma_{\min}(\Lambda_k)$ and $\kappa_{\Lambda_k}$ are the the smallest singular value and the condition number of $\Lambda_k$ respectively, $K_{\Lambda_k} = \max \{ \sigma_{\min}(\Lambda_k)^{-1}, 1 + \sqrt{\kappa_{\Lambda_k}} \} l_k \omega_{\Lambda_k}^{1/l_k}$ and $\omega_{\Lambda_k} = \left( \frac{\sqrt{\kappa_{\Lambda_k}} - 1}{\sqrt{\kappa_{\Lambda_k}} + 1} \right)^{\frac{1}{3}}$.
 \end{proposition}
 
 \begin{proof}
@@ -427,7 +426,7 @@ where $\max \left| [ T_{ij} ] \right| $ refers to the maximum absolute value of 
 \qed
 \end{proof}
 
-The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in Proposition \ref{p:decayofLambda} depends heavily on the conditioning of $\Lambda_k$, which indeed for interior point methods in general can be very high for small values of $\tau$. It should however be understood that strong convexity of (\ref{e:problem}), should improve the conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
+The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in Proposition \ref{p:decayofLambda} depends heavily on the conditioning of $\Lambda_k$, which indeed for interior point methods in general can be very high for small values of $\tau$. It should however be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
 
 To gain some perspective, we have concluded that $\Lambda_k^{-1}$ is decaying exponentially towards the off-diagonal corners and that all other matrices in (\ref{e:dualhessian2}) are banded. This suggests that also $\nabla_{\lambda \lambda}^2 d(\lambda, \tau)$ should decay towards the off-diagonal corners. To maintain a simple reasoning, one more stepping stone will be used before arriving at the main results of this section. Therefore, let us introduce the notation:
 \begin{equation}
@@ -444,11 +443,10 @@ where $V_{ij} \in \mathbb{R}^{l_{k} \times l_{k}}$, and look at the decay of $C_
 The off diagonal blocks (i.e. $V_{i,j}$ where $i - j > 0$) of $C_k^T \Lambda_k^{-1} C_k$ satisfy the following bounds:
 \begin{subequations}
 \begin{align}
-& \| V_{i,j} \|_\infty \leq \gamma^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
-& \| V_{i,j} \|_1 \leq \gamma^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
+\| V_{i,j} \|_\bullet \leq \gamma^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
 \end{align}
 \end{subequations}
-where $\bar{K}_{\Lambda_k} = (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) \omega_{\Lambda_k}^{-1} K_{\Lambda_k}$.
+where $\bar{K}_{\Lambda_k} = (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) \omega_{\Lambda_k}^{-1} K_{\Lambda_k}$ and $\bullet$ represents $\infty$ and $1$.
 \end{proposition}
 \begin{proof}
 Bla bla bla
@@ -502,16 +500,16 @@ where $W_{i,j} \in \mathbb{R}^{r_i \times r_j}$. We can now establish a decay to
 The off-diagonal blocks (i.e. $W_{i,j}$ where $i - j > 0$) of $\nabla^2 d(\lambda, \tau)$ satisfy the following bounds:
 \begin{subequations}
 \begin{align}
-& \| W_{i,j} \|_\infty \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
-& \| W_{i,j} \|_1 \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
+\| W_{i,j} \|_\bullet \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
 \end{align}
 \end{subequations}
+where $\bullet$ represents $\infty$ and $1$.
 \end{proposition}
 \begin{proof}
 To be done.
 \end{proof}
 
-Finally, let us bound the euclidean distance between $\nabla^2 d(\lambda, \tau)$ and a band along its diagonal. To do so, we start by recalling Gershgorin's circle theorem:
+Moreover, let us continue by finding a bound on the euclidean distance between $\nabla^2 d(\lambda, \tau)$ and a band along its diagonal. To do so, we start by recalling Gershgorin's circle theorem:
 \begin{theorem} \label{l:Gerschgorin}
 For $A \in \mathbb{R}^{n \times n}$ with elements $a_{ij}$, let $R_i = \sum_{j \neq i} | a_{ij} |$ be the sum of the absolute values of the non-diagonal entries in the row $i$. Let $D(a_{ii},R_i)$ be the closed disc centered in $a_{ii}$ with radius $R_i$, then every eigenvalue of $A$ lies within at least one of the discs $D(a_{ii}, R_i)$.
 \end{theorem}
@@ -523,9 +521,10 @@ A proof is given in \cite{}.
 Finally, we can establish our main result:
 \begin{lemma} \label{l:EuclidianDistance}
 Let $ \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ represent the diagonal $\mathcal{M}$-block band of $\nabla^2 d(\lambda, \tau)$. The following bound holds:
-\begin{equation}
-\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
+\begin{equation} \label{e:EuclidianDistance}
+\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
 \end{equation}
+where $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k} =  (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) K_{\Lambda_k}$.
 \end{lemma}
 \begin{proof}
 Since $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ is symmetric, its singular values collapse into the absolute value of its eigenvalues. The problem of finding a bound on the $2$-norm is hence reduced to the problem of bounding the magnitude of the largest eigenvalue.
@@ -536,6 +535,7 @@ The blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} 
 \begin{equation}
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
+Equation (\ref{e:EuclidianDistance}) is then directly obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
 \qed
 \end{proof}
 Say something about the principal behavior of the bound...
@@ -554,10 +554,19 @@ A proof is given in \cite{}.
 
 Accordingly, by combining Lemma \ref{l:EuclidianDistance} and Lemma \ref{l:InexactSolution} we can establish the following:
 \begin{lemma}
-\begin{equation}
-\frac{\| \Delta \hat{\lambda} - \Delta \lambda \|_2}{\| \Delta \lambda \|_2} \leq
+If $\Delta \hat{\lambda}$ is a solution to $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} \Delta \hat{\lambda} = -\nabla d(\lambda,\tau)$, the following bound on the relative error compared to the true Newton direction $\Delta \lambda$ holds:
+\begin{equation} \label{e:InexactSolution}
+\frac{\| \Delta \hat{\lambda} - \Delta \lambda \|_2}{\| \Delta \lambda \|_2} \leq \| \nabla^2 d(\lambda,\tau)^{-1} \|_2 (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
 \end{equation}
 \end{lemma}
+\begin{proof}
+We can view $\Delta \hat{\lambda}$ as a solution to a perturbed system:
+\begin{equation}
+\left( \nabla^2 d(\lambda, \tau) + (\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)) \right) \Delta \hat{\lambda} = -\nabla d(\lambda, \tau)
+\end{equation}
+Equation (\ref{e:InexactSolution}) follows then directly from Lemma \ref{l:EuclidianDistance} and Lemma \ref{l:InexactSolution}.
+\qed
+\end{proof}
 
 \section{Numerical experiments}
 
