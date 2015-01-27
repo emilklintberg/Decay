@@ -571,10 +571,13 @@ Equation (\ref{e:InexactSolution}) follows then directly from Lemma \ref{l:Eucli
 \section{Numerical experiments}
 
 \subsection{Decaying of the dual Hessian}
+According to Proposition \ref{p:DecayHessian}, the dual Hessian is decaying exponentially towards its off-diagonal corners. In this section, our aim is to investigate how different problem parameters affect the decay in practice.
 
-\subsubsection{A small problem}
+\subsubsection{Effects of horizon length}
 
-As an example of a small problem, we use a randomly generated problem with $4$ subproblems (i.e. $M=4$), where each subproblem has $N = 10$, $6$ states and $4$ controls and hence $n_k = 10$, and each time instance has $4$ coupling constraints.
+\subsubsection{Effects of problem dimensions}
+
+\subsection{Newton steps with inexact Hessian}
 
 \begin{figure}[h]
   \centering
@@ -583,18 +586,12 @@ As an example of a small problem, we use a randomly generated problem with $4$ s
   \label{f:SmallProblemLargeTau}
 \end{figure}
 
-According to Section \ref{S:TheoreticalDecay}, we expect a slower decay when the conditioning of $S_k^{-1}Y_k$ gets worse, i.e. when we reduce $\tau$. Surprisingly, this is something that does not seem to have a big influence in practice. To illustrate this, Figure \ref{f:SmallProblemSmallTau} shows the dual Hessian for the same problem as in Figure \ref{f:SmallProblemLargeTau}, but with $\tau=10^{-5}$.
-
 \begin{figure}[h]
   \centering
   \includegraphics[scale = 0.5]{./Figures/SmallProblemSmallTau.png}\\
   \caption{$\tau = 10^{-5}$}
   \label{f:SmallProblemSmallTau}
 \end{figure}
-
-\subsubsection{A large problem}
-
-\subsection{Newton steps with inexact Hessian}
 
 %\begin{acknowledgements}
 %If you'd like to thank anyone, place your comments here
