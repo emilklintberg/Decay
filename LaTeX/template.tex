@@ -440,7 +440,7 @@ V_{N+1,1} & V_{N+1,2} & \hdots & V_{N+1,N+1}
 \end{equation}
 where $V_{ij} \in \mathbb{R}^{l_{k} \times l_{k}}$, and look at the decay of $C_k^T \Lambda_k^{-1} C_k$.
 
-\begin{proposition}
+\begin{proposition} \label{p:intermediateDecay}
 The off diagonal blocks (i.e. $V_{i,j}$ where $i - j > 0$) of $C_k^T \Lambda_k^{-1} C_k$ satisfy the following bounds:
 \begin{subequations}
 \begin{align}
@@ -499,15 +499,14 @@ where $W_{i,j} \in \mathbb{R}^{r_i \times r_j}$. We can now establish a decay to
 
 \begin{proposition} \label{p:DecayHessian}
 The off-diagonal blocks (i.e. $W_{i,j}$ where $i - j > 0$) of $\nabla^2 d(\lambda, \tau)$ satisfy the following bounds:
-\begin{subequations}
-\begin{align}
-\| W_{i,j} \|_\bullet \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
-\end{align}
-\end{subequations}
+\begin{equation}
+\label{e:DecayHessian}
+\| W_{i,j} \|_\bullet \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j} 
+\end{equation}
 where $\bullet$ represents $\infty$ and $1$.
 \end{proposition}
 \begin{proof}
-To be done.
+Since $\Phi_k^{-1}$ is block-diagonal, the off-diagonal blocks of $F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T$ and $-F_k \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1} F_k^T$ are identical. Accordingly, by using Assumption \ref{a:BoundedData}, Assumption \ref{a:BoundedConditioning}, Proposition \ref{p:intermediateDecay} and adding the contributions from all subproblems together, brings us to (\ref{e:DecayHessian}).
 \end{proof}
 
 Moreover, let us continue by finding a bound on the euclidean distance between $\nabla^2 d(\lambda, \tau)$ and a band along its diagonal. To do so, we start by recalling Gershgorin's circle theorem:
@@ -532,14 +531,13 @@ Since $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lamb
 
 First, observe that all diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ are zero. This means that every Gershgorin disc will be centered in the origin, and a bound on the largest eigenvalue can be found by finding the largest radius of a Gershgorin disc.
 
-The blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound is located next to the diagonal band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. Furthermore, there is at least $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks at each block row. Each block is upper bounded by Proposition X. This means that we can establish a bound on the radius of the Gershgorin discs, and hence the following:
+The blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound is located next to the diagonal band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. Furthermore, there is at least $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks at each block row. Each block is upper bounded by Proposition \ref{p:DecayHessian}. This means that we can establish a bound on the radius of the Gershgorin discs, and hence the following:
 \begin{equation}
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
 Equation (\ref{e:EuclidianDistance}) is then directly obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
 \qed
 \end{proof}
-Say something about the principal behavior of the bound...
 
 It is well known that the use of an inexact Hessian will degrade the convergence of Newton's method to a linear rate \cite{}. However, let us still look at the relative error in the Newton direction that we get from using $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ instead of $\nabla^2 d(\lambda, \tau)$. First, recall the following lemma:
 \begin{lemma} \label{l:InexactSolution}
@@ -563,9 +561,10 @@ If $\Delta \hat{\lambda}$ is a solution to $\lfloor \nabla^2 d(\lambda, \tau) \r
 \begin{proof}
 We can view $\Delta \hat{\lambda}$ as a solution to a perturbed system:
 \begin{equation}
+\label{e:PertubedNewtonDirection}
 \left( \nabla^2 d(\lambda, \tau) + (\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)) \right) \Delta \hat{\lambda} = -\nabla d(\lambda, \tau)
 \end{equation}
-Equation (\ref{e:InexactSolution}) follows then directly from Lemma \ref{l:EuclidianDistance} and Lemma \ref{l:InexactSolution}.
+Equation (\ref{e:InexactSolution}) follows then directly from Lemma \ref{l:EuclidianDistance}, Lemma \ref{l:InexactSolution} and (\ref{e:PertubedNewtonDirection}).
 \qed
 \end{proof}
 

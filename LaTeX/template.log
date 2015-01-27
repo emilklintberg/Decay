@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2015 11:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2015 14:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -313,8 +313,16 @@ Overfull \hbox (0.49834pt too wide) in paragraph at lines 416--419
 /cmr/m/n/10 )[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1 +
  []
 
-[7] [8]
-Overfull \hbox (6.0064pt too wide) in paragraph at lines 524--525
+[7]
+Overfull \hbox (57.70256pt too wide) in paragraph at lines 509--510
+[]\OT1/cmr/m/n/10 Since $\OML/cmm/m/it/10 ^^H[]$ \OT1/cmr/m/n/10 is block-diago
+nal, the off-diagonal blocks of $\OML/cmm/m/it/10 F[]\OT1/cmr/m/n/10 (\OML/cmm/
+m/it/10 ^^H[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^H[]C[]^^C[]C[]^^H[]\OT1/c
+mr/m/n/10 )\OML/cmm/m/it/10 F[]$
+ []
+
+[8]
+Overfull \hbox (6.0064pt too wide) in paragraph at lines 523--524
 []\OT1/cmr/m/it/10 Let $\OMS/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 
 (\OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[]$ \OT1/cmr/m/it/
 10 rep-re-sent the di-ag-o-nal $\OMS/cmsy/m/n/10 M$\OT1/cmr/m/it/10 -block band
@@ -327,7 +335,7 @@ File: ./Figures/SmallProblemLargeTau.png Graphic file (type png)
 
 <use ./Figures/SmallProblemLargeTau.png>
 Package pdftex.def Info: ./Figures/SmallProblemLargeTau.png used on input line 
-582.
+581.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 
@@ -338,7 +346,7 @@ File: ./Figures/SmallProblemSmallTau.png Graphic file (type png)
 
 <use ./Figures/SmallProblemSmallTau.png>
 Package pdftex.def Info: ./Figures/SmallProblemSmallTau.png used on input line 
-591.
+590.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 
@@ -355,10 +363,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3136 strings out of 493488
- 44005 string characters out of 3141326
- 104816 words of memory out of 3000000
- 6393 multiletter control sequences out of 15000+200000
+ 3139 strings out of 493488
+ 44069 string characters out of 3141326
+ 104843 words of memory out of 3000000
+ 6396 multiletter control sequences out of 15000+200000
  12768 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,24p,681b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -382,7 +390,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (12 pages, 297134 bytes).
+Output written on template.pdf (12 pages, 297127 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  89 compressed objects within 1 object stream
