@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2015 10:50
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2015 11:36
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -306,7 +306,7 @@ Overfull \hbox (3.61743pt too wide) in paragraph at lines 378--379
  []
 
 [6]
-Overfull \hbox (0.49834pt too wide) in paragraph at lines 415--418
+Overfull \hbox (0.49834pt too wide) in paragraph at lines 416--419
 \OT1/cmr/m/it/10 value and the con-di-tion num-ber of $\OML/cmm/m/it/10 ^^C[]$ 
 \OT1/cmr/m/it/10 re-spec-tively, $\OML/cmm/m/it/10 K[] \OT1/cmr/m/n/10 = []\OMS
 /cmsy/m/n/10 f\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^C[]\OT1
@@ -314,7 +314,7 @@ Overfull \hbox (0.49834pt too wide) in paragraph at lines 415--418
  []
 
 [7] [8]
-Overfull \hbox (6.0064pt too wide) in paragraph at lines 523--524
+Overfull \hbox (6.0064pt too wide) in paragraph at lines 524--525
 []\OT1/cmr/m/it/10 Let $\OMS/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 
 (\OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[]$ \OT1/cmr/m/it/
 10 rep-re-sent the di-ag-o-nal $\OMS/cmsy/m/n/10 M$\OT1/cmr/m/it/10 -block band
@@ -327,7 +327,7 @@ File: ./Figures/SmallProblemLargeTau.png Graphic file (type png)
 
 <use ./Figures/SmallProblemLargeTau.png>
 Package pdftex.def Info: ./Figures/SmallProblemLargeTau.png used on input line 
-581.
+582.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 
@@ -338,18 +338,18 @@ File: ./Figures/SmallProblemSmallTau.png Graphic file (type png)
 
 <use ./Figures/SmallProblemSmallTau.png>
 Package pdftex.def Info: ./Figures/SmallProblemSmallTau.png used on input line 
-590.
+591.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 (./template.bbl [10]
-Overfull \vbox (24.452pt too high) has occurred while \output is active []
+Underfull \vbox (badness 3758) has occurred while \output is active []
 
-
-[11 <./Figures/SmallProblemLargeTau.png> <./Figures/SmallProblemSmallTau.png>])
-[12] (./template.aux)
+ [11 <./Figures/SmallProblemLargeTau.png> <./Figures/SmallProblemSmallTau.png>]
+) [12]
+(./template.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -361,7 +361,7 @@ Here is how much of TeX's memory you used:
  6393 multiletter control sequences out of 15000+200000
  12768 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,24p,697b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,24p,681b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
@@ -382,7 +382,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (12 pages, 297126 bytes).
+Output written on template.pdf (12 pages, 297134 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  89 compressed objects within 1 object stream

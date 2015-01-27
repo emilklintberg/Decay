@@ -373,13 +373,14 @@ The row and column absolute sums of Jacobians of equality constraints (i.e. (\re
 \end{assumption}
 It should be observed that Assumption \ref{a:BoundedData} is not by any means restrictive, since any solver would struggle with a problem where it is not fulfilled. 
 
-Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{}. This might occur since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{}. Moreover, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ is lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not unrealistic to assume boundedness of $\Phi_k^{-1}$ which we do next:
+Furthermore, we assume boundedness of $\Phi_k^{-1}$:
 \begin{assumption} \label{a:BoundedConditioning}
 The row and column absolute sums of $\Phi_k^{-1}$ are bounded. Hence:
 \begin{equation}
 \| \Phi_{k,i}^{-1} \|_\infty = \| \Phi_{k,i}^{-1} \|_1 \leq \gamma_{\Phi_k^{-1}}, \quad \forall i
 \end{equation}
 \end{assumption}
+Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{}. This might occur since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{}. Moreover, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ are lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not restrictive to assume boundedness of $\Phi_k^{-1}$.
 
 Inverses of sparse matrices are in general dense, but individual elements are often small in absolute value. Since $\Lambda_k$ is banded, symmetric and positive definite, we will relay our analysis on the following classical result:
 
@@ -522,7 +523,7 @@ Finally, we can establish our main result:
 \begin{lemma} \label{l:EuclidianDistance}
 Let $ \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ represent the diagonal $\mathcal{M}$-block band of $\nabla^2 d(\lambda, \tau)$. The following bound holds:
 \begin{equation} \label{e:EuclidianDistance}
-\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
+\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
 \end{equation}
 where $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k} =  (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) K_{\Lambda_k}$.
 \end{lemma}
@@ -533,7 +534,7 @@ First, observe that all diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) 
 
 The blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound is located next to the diagonal band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. Furthermore, there is at least $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks at each block row. Each block is upper bounded by Proposition X. This means that we can establish a bound on the radius of the Gershgorin discs, and hence the following:
 \begin{equation}
-\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq (N -\frac{\mathcal{M} - 1}{2}) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
+\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
 Equation (\ref{e:EuclidianDistance}) is then directly obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
 \qed
