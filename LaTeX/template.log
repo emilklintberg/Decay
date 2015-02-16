@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  27 JAN 2015 15:41
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 FEB 2015 14:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -197,6 +197,37 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2012/02/19 v3.2f Customizing captions (AR)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2012/01/12 v1.4b caption3 kernel (AR)
+\captionmargin=\dimen125
+\captionmargin@=\dimen126
+\captionwidth=\dimen127
+\caption@indent=\dimen128
+\caption@parindent=\dimen129
+\caption@hangindent=\dimen130
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\captionstyle \ifx \@ca
+ptype \fig@type \vskip \figcapgap \fi \setbox \@tempboxa \hbox {{\floatlegendst
+yle #1\floatcounterend }\capstrut #2}\ifdim \wd \@tempboxa >\hsize {\floatlegen
+dstyle #1\floatcounterend }\capstrut #2\par \else \hbox to\hsize {\leftlegendgl
+ue \unhbox \@tempboxa \hfil }\fi \ifx \@captype \fig@type \else \vskip \tabcapg
+ap \fi .
+\c@ContinuedFloat=\count119
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2012/01/12 v1.1d Sub-captions (AR)
+\c@subfigure=\count120
+\c@subtable=\count121
+)
 (./template.aux
 
 LaTeX Warning: Label `e:1' multiply defined.
@@ -204,38 +235,41 @@ LaTeX Warning: Label `e:1' multiply defined.
 
 LaTeX Warning: Label `e:1' multiply defined.
 
+
+LaTeX Warning: Label `fig:test' multiply defined.
+
 )
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
 
 Unknown journal: specify \journalname{<name of your journal>} in preambel
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen125
+\scratchcounter=\count122
+\scratchdimen=\dimen131
 \scratchbox=\box31
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\nofMPsegments=\count123
+\nofMParguments=\count124
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen126
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen132
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
 \everyMPtoPDFconversion=\toks23
 ) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -285,12 +319,37 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: Incompatible package detected (regarding \@caption).
+(caption)             \@caption = \long macro:#1[#2]#3->\par \addcontentsline {
+\csname ext@#1\endcsname }{#1}{\protect \numberline {\csname the#1\endcsname }{
+\ignorespaces #2}}\begingroup \@parboxrestore \@makecaption {\csname fnum@#1\en
+dcsname }{\ignorespaces #3}\par \endgroup .
+
+
+Package caption Warning: \caption will not be redefined since it's already
+(caption)                redefined by a document class or package which is
+(caption)                unknown to the caption package.
+See the caption package documentation for explanation.
+
+
+! Package caption Error: The `subcaption' package does not work correctly
+(caption)                in compatibility mode.
+
+See the caption package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.70 \begin{document}
+                     
+? 
+Package caption Info: End \AtBeginDocument code.
 SVJour3 warning: Missing \journalname
-LaTeX Font Info:    Try loading font information for U+msa on input line 99.
+LaTeX Font Info:    Try loading font information for U+msa on input line 101.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 99.
+LaTeX Font Info:    Try loading font information for U+msb on input line 101.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -299,73 +358,201 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 SVJour3 Warning: Title too long for running head.
 Please supply a shorter form with \titlerunning prior to \maketitle
 [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] [5]
-Overfull \hbox (3.61743pt too wide) in paragraph at lines 378--379
+Underfull \vbox (badness 1210) has occurred while \output is active []
+
+ [2]
+[3] [4] [5]
+Overfull \hbox (28.58022pt too wide) in paragraph at lines 343--344
+[]\OT1/cmr/m/n/10 According to (22a[]), $\OML/cmm/m/it/10 ^^H[]$ \OT1/cmr/m/n/1
+0 is block di-ag-o-nal with blocks $\OML/cmm/m/it/10 ^^H[] \OT1/cmr/m/n/10 = \O
+ML/cmm/m/it/10 H[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 G[]S[]Y[]G[]$\OT1/cmr/m/n
+/10 .
+ []
+
+[6]
+Overfull \hbox (3.61743pt too wide) in paragraph at lines 380--381
 []\OT1/cmr/m/it/10 The row and col-umn ab-so-lute sums of $\OML/cmm/m/it/10 ^^H
 []$ \OT1/cmr/m/it/10 are bounded. Hence: 
  []
 
-[6]
-Overfull \hbox (0.49834pt too wide) in paragraph at lines 416--419
+[7]
+Overfull \hbox (0.49834pt too wide) in paragraph at lines 426--429
 \OT1/cmr/m/it/10 value and the con-di-tion num-ber of $\OML/cmm/m/it/10 ^^C[]$ 
 \OT1/cmr/m/it/10 re-spec-tively, $\OML/cmm/m/it/10 K[] \OT1/cmr/m/n/10 = []\OMS
 /cmsy/m/n/10 f\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^C[]\OT1
 /cmr/m/n/10 )[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1 +
  []
 
-[7]
-Overfull \hbox (57.70256pt too wide) in paragraph at lines 509--510
+[8]
+Overfull \hbox (57.70256pt too wide) in paragraph at lines 520--521
 []\OT1/cmr/m/n/10 Since $\OML/cmm/m/it/10 ^^H[]$ \OT1/cmr/m/n/10 is block-diago
 nal, the off-diagonal blocks of $\OML/cmm/m/it/10 F[]\OT1/cmr/m/n/10 (\OML/cmm/
 m/it/10 ^^H[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^H[]C[]^^C[]C[]^^H[]\OT1/c
 mr/m/n/10 )\OML/cmm/m/it/10 F[]$
  []
 
-[8]
-Overfull \hbox (6.0064pt too wide) in paragraph at lines 523--524
-[]\OT1/cmr/m/it/10 Let $\OMS/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 
-(\OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[]$ \OT1/cmr/m/it/
-10 rep-re-sent the di-ag-o-nal $\OMS/cmsy/m/n/10 M$\OT1/cmr/m/it/10 -block band
- of $\OMS/cmsy/m/n/10 r[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^
-U; ^^\\OT1/cmr/m/n/10 )$\OT1/cmr/m/it/10 .
+[9] [10]
+Overfull \hbox (10.53824pt too wide) in paragraph at lines 588--589
+[]\OT1/cmr/m/n/10 We have al-ready es-tab-lished that the eigen-val-ues of $\OM
+S/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U; ^^\\
+OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[] ^^@ r[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (
+\OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr/m/n/10 ))$
  []
 
-[9] <./Figures/SmallProblemLargeTau.png, id=47, 433.62pt x 433.62pt>
-File: ./Figures/SmallProblemLargeTau.png Graphic file (type png)
+[11]
+Overfull \hbox (6.54483pt too wide) detected at line 632
+[] []
+ []
 
-<use ./Figures/SmallProblemLargeTau.png>
-Package pdftex.def Info: ./Figures/SmallProblemLargeTau.png used on input line 
-584.
-(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+[12]
+Package epstopdf Info: Source file: <./Figures/HessianSpyN30Tau1.eps>
+(epstopdf)                    date: 2015-02-10 16:20:46
+(epstopdf)                    size: 40251937 bytes
+(epstopdf)             Output file: <./Figures/HessianSpyN30Tau1-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2015-02-11 13:58:00
+(epstopdf)                    size: 25686 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN30Tau1
+-eps-converted-to.pdf ./Figures/HessianSpyN30Tau1.eps>
+(epstopdf)             \includegraphics on input line 666.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/HessianSpyN30Tau1-eps-converted-to.pdf, id=56, 433.62pt x 433.62pt>
+File: ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf used 
+on input line 666.
+(pdftex.def)             Requested size: 169.0pt x 168.99864pt.
+Package epstopdf Info: Source file: <./Figures/HessianSpyN30Tau10minus6.eps>
+(epstopdf)                    date: 2015-02-10 17:16:56
+(epstopdf)                    size: 40251935 bytes
+(epstopdf)             Output file: <./Figures/HessianSpyN30Tau10minus6-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2015-02-11 14:42:36
+(epstopdf)                    size: 25835 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN30Tau1
+0minus6-eps-converted-to.pdf ./Figures/HessianSpyN30Tau10minus6.eps>
+(epstopdf)             \includegraphics on input line 672.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf, id=57, 433.62pt x 433
+.62pt>
+File: ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pd
+f used on input line 672.
+(pdftex.def)             Requested size: 169.0pt x 168.99864pt.
+Package epstopdf Info: Source file: <./Figures/HessianDecayN30Tau1.eps>
+(epstopdf)                    date: 2015-02-10 16:38:37
+(epstopdf)                    size: 143307 bytes
+(epstopdf)             Output file: <./Figures/HessianDecayN30Tau1-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2015-02-11 13:58:00
+(epstopdf)                    size: 43102 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN30Ta
+u1-eps-converted-to.pdf ./Figures/HessianDecayN30Tau1.eps>
+(epstopdf)             \includegraphics on input line 693.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/HessianDecayN30Tau1-eps-converted-to.pdf, id=58, 578.16pt x 433.62pt
+>
+File: ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf use
+d on input line 693.
+(pdftex.def)             Requested size: 169.0pt x 126.74567pt.
+Package epstopdf Info: Source file: <./Figures/HessianDecayN30Tau10minus6.eps>
+(epstopdf)                    date: 2015-02-10 17:13:57
+(epstopdf)                    size: 143308 bytes
+(epstopdf)             Output file: <./Figures/HessianDecayN30Tau10minus6-eps-c
+onverted-to.pdf>
+(epstopdf)                    date: 2015-02-11 14:37:01
+(epstopdf)                    size: 42828 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN30Ta
+u10minus6-eps-converted-to.pdf ./Figures/HessianDecayN30Tau10minus6.eps>
+(epstopdf)             \includegraphics on input line 699.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf, id=59, 578.16pt x 4
+33.62pt>
+File: ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf Graphic file (t
+ype pdf)
+ <use ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.
+pdf used on input line 699.
+(pdftex.def)             Requested size: 169.0pt x 126.74567pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Figures/SmallProblemSmallTau.png, id=49, 433.62pt x 433.62pt>
-File: ./Figures/SmallProblemSmallTau.png Graphic file (type png)
+[13 <./Figures/HessianSpyN30Tau1-eps-converted-to.pdf> <./Figures/HessianSpyN30
+Tau10minus6-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./Figures/HessianSpyN10Tau1.eps>
+(epstopdf)                    date: 2015-02-10 13:01:49
+(epstopdf)                    size: 40249912 bytes
+(epstopdf)             Output file: <./Figures/HessianSpyN10Tau1-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2015-02-10 15:56:22
+(epstopdf)                    size: 22967 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN10Tau1
+-eps-converted-to.pdf ./Figures/HessianSpyN10Tau1.eps>
+(epstopdf)             \includegraphics on input line 713.
+Package epstopdf Info: Output file is already uptodate.
 
-<use ./Figures/SmallProblemSmallTau.png>
-Package pdftex.def Info: ./Figures/SmallProblemSmallTau.png used on input line 
-591.
-(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+<./Figures/HessianSpyN10Tau1-eps-converted-to.pdf, id=93, 433.62pt x 433.62pt>
+File: ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf used 
+on input line 713.
+(pdftex.def)             Requested size: 173.44492pt x 173.44492pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./template.bbl [10] [11 <./Figures/SmallProblemLargeTau.png> <./Figures/SmallP
-roblemSmallTau.png>]) [12] (./template.aux)
+Package epstopdf Info: Source file: <./Figures/HessianDecayN10Tau1.eps>
+(epstopdf)                    date: 2015-02-10 14:50:35
+(epstopdf)                    size: 76051 bytes
+(epstopdf)             Output file: <./Figures/HessianDecayN10Tau1-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2015-02-10 15:56:22
+(epstopdf)                    size: 20023 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN10Ta
+u1-eps-converted-to.pdf ./Figures/HessianDecayN10Tau1.eps>
+(epstopdf)             \includegraphics on input line 720.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/HessianDecayN10Tau1-eps-converted-to.pdf, id=94, 578.16pt x 433.62pt
+>
+File: ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf use
+d on input line 720.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./template.bbl) [14 <./Figures/HessianDecayN30Tau1-eps-converted-to.pdf> <./Fi
+gures/HessianDecayN30Tau10minus6-eps-converted-to.pdf>] [15 <./Figures/HessianS
+pyN10Tau1-eps-converted-to.pdf> <./Figures/HessianDecayN10Tau1-eps-converted-to
+.pdf>] (./template.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3139 strings out of 493488
- 44069 string characters out of 3141326
- 104843 words of memory out of 3000000
- 6396 multiletter control sequences out of 15000+200000
- 12768 words of font info for 48 fonts, out of 3000000 for 9000
+ 4238 strings out of 493488
+ 64716 string characters out of 3141326
+ 122263 words of memory out of 3000000
+ 7483 multiletter control sequences out of 15000+200000
+ 13466 words of font info for 50 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,24p,681b,322s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,38p,853b,432s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
@@ -386,10 +573,10 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (12 pages, 296182 bytes).
+Output written on template.pdf (15 pages, 430787 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 89 compressed objects within 1 object stream
+ 228 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
