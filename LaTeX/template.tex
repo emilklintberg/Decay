@@ -414,7 +414,7 @@ where $\max \left| [ T_{ij} ] \right| $ refers to the maximum absolute value of 
 \qed
 \end{proof}
 \begin{remark}
-The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in depends heavily on the conditioning of $\Lambda_k$, which for interior point methods in general can be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
+The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in (\ref{e:decayofLambda}) depends heavily on the conditioning of $\Lambda_k$, which for interior point methods in general can be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
 \end{remark}
 
 We have concluded that $\Lambda_k^{-1}$ is decaying exponentially towards the off-diagonal corners and that all other matrices in (\ref{e:dualhessian2}) are banded. This suggests that also $\nabla^2 d(\lambda, \tau)$ should decay towards the off-diagonal corners. Let us introduce the notation:
@@ -518,12 +518,11 @@ A proof is given in \cite{HornR2013}.
 \end{proof}
 We can now establish a criterion for non-singularity of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$:
 \begin{lemma} \label{l:nonsingularClippedHessian}
-If
+If $\mathcal{M}$ is chosen such that:
 \begin{equation} \label{e:nonsingularClippedHessian}
 \lambda_{\min}( \nabla^2 d(\lambda, \tau) ) > \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
 \end{equation}
-
-$\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
+then $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
 \end{lemma}
 \begin{proof}
 Observe that
@@ -558,12 +557,12 @@ Observe that (\ref{e:nonsingularClippedHessian}) is a sufficient and not a neces
 In the previous section, we have seen that the clipped dual Hessian is positive definite and close, in an euclidean sense, to the exact Hessian provided that the band $\mathcal{M}$ is wide enough. Here, we aim at formalizing criterions for selecting the bandwidth.
 
 \begin{theorem} If the dual function fulfills:
-\begin{equation}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
+\begin{equation} \label{e:ConditionHessian}
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
 \end{equation}
 then the following bound holds:
 \begin{equation} \label{e:Convergence}
-\| \nabla d(\lambda^+,\tau) \|_2 \leq \omega_1 \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
+\| \nabla d(\lambda^+,\tau) \|_2 \leq \omega \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
 \end{equation}
 where
 \begin{equation}
@@ -590,11 +589,11 @@ where we have used (\ref{e:approxNewtonSystem}) and the following result from ca
 \end{equation}
 Consequently, we can bound (\ref{e:convergence1}) according to:
 \begin{equation}
-\| \nabla d^+ \|_2 \leq \omega_1 \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
+\| \nabla d^+ \|_2 \leq \omega \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
 \end{equation}
 where we have introduced:
 \begin{equation}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
 \end{equation}
 and
 \begin{equation}
@@ -605,6 +604,30 @@ f(\mathcal{M}) = \left\| \left( \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathca
 \begin{remark}
 Observe the $f(\mathcal{M}) \geq 0$ is a function which value we in principle can choose.
 \end{remark}
+Note that the condition (\ref{e:ConditionHessian}) can be related to Lipschitz continuity of the dual Hessian.
+\begin{proposition}
+Let the dual Hessian be Lipschitz continuous with constant $L$, then:
+\begin{equation}
+\omega = \frac{1}{2} L \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}^{-1} \|_2^2
+\end{equation}
+fulfills (\ref{e:ConditionHessian}).
+\end{proposition}
+\begin{proof}
+By definition of Lipschitz continuity, the following criteria holds:
+\begin{equation}
+\| \nabla^2 d(\lambda + \Delta \lambda, \tau) - \nabla^2 d(\lambda, \tau) \|_2 \leq L \| \Delta \lambda \|_2
+\end{equation} 
+Observe that:
+\begin{equation}
+\begin{aligned}
+& \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \\
+& \leq \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \right\|_2 \left\| \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \\
+& \leq \int_0^1 \left\| ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \right\|_2 \text{dt} \left\| \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \\
+& \leq \frac{1}{2} L \left\| \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \| \Delta \lambda \|_2 \leq \frac{1}{2} L \left\| \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2^2 \| \nabla d(\lambda, \tau) \|_2
+\end{aligned}
+\end{equation}
+\qed
+\end{proof}
 
 In terms of iterations, the optimal choice would be to use the full dual Hessian and hence make $f(\mathcal{M}) = 0$. However, since a dense factorization is more costly than its banded counterpart, the overall complexity of solving a problem can be lower if a nonzero $f(\mathcal{M})$ is used.
 
