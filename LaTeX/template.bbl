@@ -1,10 +1,15 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
   \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
+
+\bibitem{Benzi2002}
+Benzi, M.: {P}reconditioning {T}echniques for {L}arge {L}inear {S}ystems: {A}
+  {S}urvey.
+\newblock Journal of Computational Physics \textbf{182}, 418--477 (2002)
 
 \bibitem{Bertsekas1989}
 Bertsekas, D., Tsitsiklis, J.N.: {P}arallel and distributed computation:
@@ -15,6 +20,10 @@ Bertsekas, D., Tsitsiklis, J.N.: {P}arallel and distributed computation:
 Boyd, S., Vandenberghe, L.: {C}onvex {O}ptimization.
 \newblock University {P}ress, Cambridge (2004)
 
+\bibitem{Demko1986}
+Demko, S., Moss, W., Smith, P.: Decay rates for inverses of band matrices.
+\newblock Mathemathics of Computation \textbf{43}, 491--499 (1986)
+
 \bibitem{Domahidi2012}
 Domahidi, A., Zgraggen, A., Zeilinger, M., Morari, M., Jones, C.: Efficient
   {I}nterior {P}oint {M}ethods for {M}ultistage {P}roblems {A}rising in
@@ -22,10 +31,20 @@ Domahidi, A., Zgraggen, A., Zeilinger, M., Morari, M., Jones, C.: Efficient
 \newblock In: IEEE Conference on Decision and Control (CDC), pp. 668 -- 674.
   Maui, HI, USA (2012)
 
+\bibitem{HornR2013}
+Horn, R.A., Johnson, C.R.: Matrix Analysis - 2nd ed.
+\newblock Cambridge University Press (2013)
+
 \bibitem{Klintberg2014}
 Klintberg, E., Gros, S.: A primal-dual newton method for distributed quadratic
   programming.
 \newblock In: Conference on Decision and Control (2014)
+
+\bibitem{Kozma2013}
+Kozma, A., Conte, C., Diehl, M.: Benchmarking large scale distributed convex
+  quadratic programming algorithms.
+\newblock Optimization Methods \& Software  (2013).
+\newblock (submitted for publication)
 
 \bibitem{Kozma2014a}
 Kozma, A., Klintberg, E., Gros, S., Diehl, M.: An improved distributed dual
@@ -36,6 +55,16 @@ Kozma, A., Klintberg, E., Gros, S., Diehl, M.: An improved distributed dual
 Necoara, I., Suykens, J.: An interior-point {L}agrangian decomposition method
   for separable convex optimization.
 \newblock J. Optim. Theory and Appl. \textbf{143}(3), 567--588 (2009)
+
+\bibitem{Nocedal2006}
+Nocedal, J., Wright, S.: {N}umerical {O}ptimization, 2 edn.
+\newblock Springer Series in Operations Research and Financial Engineering.
+  Springer (2006)
+
+\bibitem{WrightM1998}
+Wright, M.: Ill-conditioning and computational error in interior methods for
+  nonlinear programming.
+\newblock SIAM Journal on Optimization \textbf{9}, 84--111 (1998)
 
 \bibitem{Wright1997}
 Wright, S.: {P}rimal-{D}ual {I}nterior-{P}oint {M}ethods.

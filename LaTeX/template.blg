@@ -3,44 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: template.aux
 The style file: spmpsci.bst
 Database file #1: optec.bib
-You've used 7 entries,
+Repeated entry---line 3389 of file optec.bib
+ : @article{Benzi2002
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+You've used 13 entries,
             2946 wiz_defined-function locations,
-            740 strings with 7411 characters,
-and the built_in function-call counts, 4209 in all, are:
-= -- 435
-> -- 104
+            782 strings with 8310 characters,
+and the built_in function-call counts, 7928 in all, are:
+= -- 861
+> -- 176
 < -- 1
-+ -- 58
-- -- 36
-* -- 187
-:= -- 462
-add.period$ -- 8
-call.type$ -- 7
-change.case$ -- 42
++ -- 105
+- -- 60
+* -- 344
+:= -- 850
+add.period$ -- 16
+call.type$ -- 13
+change.case$ -- 72
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 448
-empty$ -- 325
-format.name$ -- 42
-if$ -- 890
+cite$ -- 13
+duplicate$ -- 865
+empty$ -- 587
+format.name$ -- 70
+if$ -- 1670
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 66
-newline$ -- 36
-num.names$ -- 14
-pop$ -- 214
+int.to.str$ -- 13
+missing$ -- 122
+newline$ -- 61
+num.names$ -- 26
+pop$ -- 394
 preamble$ -- 1
-purify$ -- 32
+purify$ -- 56
 quote$ -- 0
-skip$ -- 188
+skip$ -- 370
 stack$ -- 0
-substring$ -- 157
-swap$ -- 317
+substring$ -- 316
+swap$ -- 634
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 22
+type$ -- 42
 warning$ -- 0
-while$ -- 21
-width$ -- 8
-write$ -- 73
+while$ -- 40
+width$ -- 15
+write$ -- 134
+(There was 1 error message)

@@ -33650,7 +33650,7 @@
   mlanguage = {E}
 }
 
-@ARTICLE{WrightM1998,
+@ARTICLE{Wright1998,
   author = {Wright, M.},
   title = {Ill-Conditioning and Computational Error in Interior Methods for
 	Nonlinear Programming},

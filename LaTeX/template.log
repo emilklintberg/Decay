@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 FEB 2015 14:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  18 FEB 2015 10:11
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -362,29 +362,21 @@ Underfull \vbox (badness 1210) has occurred while \output is active []
 
  [2]
 [3] [4] [5]
-Overfull \hbox (28.58022pt too wide) in paragraph at lines 343--344
-[]\OT1/cmr/m/n/10 According to (22a[]), $\OML/cmm/m/it/10 ^^H[]$ \OT1/cmr/m/n/1
-0 is block di-ag-o-nal with blocks $\OML/cmm/m/it/10 ^^H[] \OT1/cmr/m/n/10 = \O
-ML/cmm/m/it/10 H[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 G[]S[]Y[]G[]$\OT1/cmr/m/n
-/10 .
- []
-
-[6]
-Overfull \hbox (3.61743pt too wide) in paragraph at lines 380--381
+Overfull \hbox (3.61743pt too wide) in paragraph at lines 359--360
 []\OT1/cmr/m/it/10 The row and col-umn ab-so-lute sums of $\OML/cmm/m/it/10 ^^H
 []$ \OT1/cmr/m/it/10 are bounded. Hence: 
  []
 
-[7]
-Overfull \hbox (0.49834pt too wide) in paragraph at lines 426--429
+[6]
+Overfull \hbox (0.49834pt too wide) in paragraph at lines 404--406
 \OT1/cmr/m/it/10 value and the con-di-tion num-ber of $\OML/cmm/m/it/10 ^^C[]$ 
 \OT1/cmr/m/it/10 re-spec-tively, $\OML/cmm/m/it/10 K[] \OT1/cmr/m/n/10 = []\OMS
 /cmsy/m/n/10 f\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^C[]\OT1
 /cmr/m/n/10 )[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1 +
  []
 
-[8]
-Overfull \hbox (57.70256pt too wide) in paragraph at lines 520--521
+[7] [8]
+Overfull \hbox (57.70256pt too wide) in paragraph at lines 474--475
 []\OT1/cmr/m/n/10 Since $\OML/cmm/m/it/10 ^^H[]$ \OT1/cmr/m/n/10 is block-diago
 nal, the off-diagonal blocks of $\OML/cmm/m/it/10 F[]\OT1/cmr/m/n/10 (\OML/cmm/
 m/it/10 ^^H[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^H[]C[]^^C[]C[]^^H[]\OT1/c
@@ -392,19 +384,19 @@ mr/m/n/10 )\OML/cmm/m/it/10 F[]$
  []
 
 [9] [10]
-Overfull \hbox (10.53824pt too wide) in paragraph at lines 588--589
+Overfull \hbox (10.53824pt too wide) in paragraph at lines 542--543
 []\OT1/cmr/m/n/10 We have al-ready es-tab-lished that the eigen-val-ues of $\OM
 S/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U; ^^\\
 OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[] ^^@ r[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (
 \OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr/m/n/10 ))$
  []
 
-[11]
-Overfull \hbox (6.54483pt too wide) detected at line 632
+
+Overfull \hbox (6.54483pt too wide) detected at line 586
 [] []
  []
 
-[12]
+[11] [12]
 Package epstopdf Info: Source file: <./Figures/HessianSpyN30Tau1.eps>
 (epstopdf)                    date: 2015-02-10 16:20:46
 (epstopdf)                    size: 40251937 bytes
@@ -414,7 +406,7 @@ to.pdf>
 (epstopdf)                    size: 25686 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN30Tau1
 -eps-converted-to.pdf ./Figures/HessianSpyN30Tau1.eps>
-(epstopdf)             \includegraphics on input line 666.
+(epstopdf)             \includegraphics on input line 622.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianSpyN30Tau1-eps-converted-to.pdf, id=56, 433.62pt x 433.62pt>
@@ -422,7 +414,7 @@ File: ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianSpyN30Tau1-eps-converted-to.pdf used 
-on input line 666.
+on input line 622.
 (pdftex.def)             Requested size: 169.0pt x 168.99864pt.
 Package epstopdf Info: Source file: <./Figures/HessianSpyN30Tau10minus6.eps>
 (epstopdf)                    date: 2015-02-10 17:16:56
@@ -433,7 +425,7 @@ verted-to.pdf>
 (epstopdf)                    size: 25835 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN30Tau1
 0minus6-eps-converted-to.pdf ./Figures/HessianSpyN30Tau10minus6.eps>
-(epstopdf)             \includegraphics on input line 672.
+(epstopdf)             \includegraphics on input line 628.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf, id=57, 433.62pt x 433
@@ -442,7 +434,7 @@ File: ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf Graphic file (typ
 e pdf)
  <use ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianSpyN30Tau10minus6-eps-converted-to.pd
-f used on input line 672.
+f used on input line 628.
 (pdftex.def)             Requested size: 169.0pt x 168.99864pt.
 Package epstopdf Info: Source file: <./Figures/HessianDecayN30Tau1.eps>
 (epstopdf)                    date: 2015-02-10 16:38:37
@@ -453,7 +445,7 @@ d-to.pdf>
 (epstopdf)                    size: 43102 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN30Ta
 u1-eps-converted-to.pdf ./Figures/HessianDecayN30Tau1.eps>
-(epstopdf)             \includegraphics on input line 693.
+(epstopdf)             \includegraphics on input line 649.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianDecayN30Tau1-eps-converted-to.pdf, id=58, 578.16pt x 433.62pt
@@ -462,7 +454,7 @@ File: ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf Graphic file (type pdf
 )
  <use ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianDecayN30Tau1-eps-converted-to.pdf use
-d on input line 693.
+d on input line 649.
 (pdftex.def)             Requested size: 169.0pt x 126.74567pt.
 Package epstopdf Info: Source file: <./Figures/HessianDecayN30Tau10minus6.eps>
 (epstopdf)                    date: 2015-02-10 17:13:57
@@ -473,7 +465,7 @@ onverted-to.pdf>
 (epstopdf)                    size: 42828 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN30Ta
 u10minus6-eps-converted-to.pdf ./Figures/HessianDecayN30Tau10minus6.eps>
-(epstopdf)             \includegraphics on input line 699.
+(epstopdf)             \includegraphics on input line 655.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf, id=59, 578.16pt x 4
@@ -482,7 +474,7 @@ File: ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianDecayN30Tau10minus6-eps-converted-to.
-pdf used on input line 699.
+pdf used on input line 655.
 (pdftex.def)             Requested size: 169.0pt x 126.74567pt.
 
 
@@ -499,7 +491,7 @@ to.pdf>
 (epstopdf)                    size: 22967 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyN10Tau1
 -eps-converted-to.pdf ./Figures/HessianSpyN10Tau1.eps>
-(epstopdf)             \includegraphics on input line 713.
+(epstopdf)             \includegraphics on input line 669.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianSpyN10Tau1-eps-converted-to.pdf, id=93, 433.62pt x 433.62pt>
@@ -507,7 +499,7 @@ File: ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianSpyN10Tau1-eps-converted-to.pdf used 
-on input line 713.
+on input line 669.
 (pdftex.def)             Requested size: 173.44492pt x 173.44492pt.
 
 
@@ -522,7 +514,7 @@ d-to.pdf>
 (epstopdf)                    size: 20023 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayN10Ta
 u1-eps-converted-to.pdf ./Figures/HessianDecayN10Tau1.eps>
-(epstopdf)             \includegraphics on input line 720.
+(epstopdf)             \includegraphics on input line 676.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianDecayN10Tau1-eps-converted-to.pdf, id=94, 578.16pt x 433.62pt
@@ -531,14 +523,14 @@ File: ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf Graphic file (type pdf
 )
  <use ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianDecayN10Tau1-eps-converted-to.pdf use
-d on input line 720.
+d on input line 676.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./template.bbl) [14 <./Figures/HessianDecayN30Tau1-eps-converted-to.pdf> <./Fi
-gures/HessianDecayN30Tau10minus6-eps-converted-to.pdf>] [15 <./Figures/HessianS
+(./template.bbl [14 <./Figures/HessianDecayN30Tau1-eps-converted-to.pdf> <./Fig
+ures/HessianDecayN30Tau10minus6-eps-converted-to.pdf>]) [15 <./Figures/HessianS
 pyN10Tau1-eps-converted-to.pdf> <./Figures/HessianDecayN10Tau1-eps-converted-to
 .pdf>] (./template.aux)
 
@@ -546,10 +538,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4238 strings out of 493488
- 64716 string characters out of 3141326
- 122263 words of memory out of 3000000
- 7483 multiletter control sequences out of 15000+200000
+ 4245 strings out of 493488
+ 64801 string characters out of 3141326
+ 124294 words of memory out of 3000000
+ 7490 multiletter control sequences out of 15000+200000
  13466 words of font info for 50 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,38p,853b,432s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -573,7 +565,7 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (15 pages, 430787 bytes).
+Output written on template.pdf (15 pages, 433780 bytes).
 PDF statistics:
  228 PDF objects out of 1000 (max. 8388607)
  119 compressed objects within 2 object streams
