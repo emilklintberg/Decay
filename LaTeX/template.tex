@@ -54,6 +54,14 @@ grestore
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+
+\usepackage{color}
+\definecolor{seb}{rgb}{0.9,0.9,1}
+\newcommand{\Seb}[1]{
+\begin{center}
+\fcolorbox{seb}{seb}{\parbox[t]{0.45\textwidth}{\textbf{Seb:} #1}}
+\end{center}}
+
 %
 % \usepackage{mathptmx}      % use Times fonts if available on your TeX system
 %
@@ -69,7 +77,7 @@ grestore
 %
 \begin{document}
 
-\title{Quasi-structure in the dual Hessian for distributed MPC with non-delayed couplings%\thanks{Grants or other notes
+\title{Exploitation of the Quasi-structure of the Dual Hessian for distributed MPC with Non-delayed Couplings%\thanks{Grants or other notes
 %about the article that should go on the front page should be
 %placed here. General acknowledgments should be placed at the end of the article.}
 }
@@ -108,7 +116,14 @@ Bla bla bla
 \end{abstract}
 
 \section{Introduction}
-Bla bla bla
+
+\subsection{Some recent stuff to cite}
+
+\subsubsection{First-order methods} 
+In \cite{Necoara2014a}, rate estimates of two inexact gradient methods are found. In \cite{Giselsson2014a}, a generalized fast gradient method for distributed MPC is presented. In \cite{Giselsson2014b}, a preconditioned fast dual proximal gradient method is derived for central MPC problems. In (Iteration complexity analysis of dual first order methods for convex programming, (only submitted) should we cite anyway?), an unified convergence analysis of dual first-order methods are performed.
+
+\subsubsection{Second-order methods}
+The qpDUNES paper at IFAC \cite{Frasch2014}. In \cite{Wei2013}, a distributed Newton method is proposed to maximize network utilization.
 
 \section{Prelimenaries}
 
@@ -188,7 +203,7 @@ A_{k,0} & & \\
 \end{align*}
 \end{subequations}
 
-\subsection{Dual decomposition with second-order information}
+\subsection{Dual decomposition with second-order information} \label{s:DualDecomposition}
 
 We introduce the dual variables $\lambda \in \mathbb{R}^{(N+1) r}$ corresponding to the coupling constraints (\ref{e:CoupConst}) and define the Lagrange function as:
 \begin{equation}
@@ -208,7 +223,7 @@ The dual function $d(\lambda) = -\min_{z \in \mathcal{Z}} \mathcal{L}(z,\lambda)
 d(\lambda) = -\sum_{k=1}^M \min_{z_k \in \mathcal{Z}_k} \mathcal{L}_k(z_k,\lambda)
 \end{equation}
 
-Since (\ref{e:problem1}) is strictly convex, (\ref{e:dualfunction}) is convex and continuously differentiable, but not twice differentiable. However, the Hessian of $d(\lambda)$ is a piecewise constant matrix and change with the active-set of (\ref{e:problem}) \cite{Kozma2014a}.
+Since (\ref{e:problem1}) is strictly convex, $d(\lambda)$ is convex and continuously differentiable, but not twice differentiable. However, the Hessian of $d(\lambda)$ is a piecewise constant matrix and change with the active-set of (\ref{e:problem}) \cite{Kozma2014a}.
 
 The non-smoothness implies that $d(\lambda)$ is not self-concordant and the solution to the dual problem is hence not easily tracked with Newton's method. However, if we relax the inequality constraints (\ref{e:ineqConst}) with a self-concordant log-barrier, according to:
 \begin{subequations}
@@ -222,12 +237,12 @@ The non-smoothness implies that $d(\lambda)$ is not self-concordant and the solu
 \end{subequations}
 where $\tau > 0$ will be referred to as the \emph{barrier parameter}, the resulting \emph{relaxed dual function} $d(\lambda, \tau)$ is self-concordant \cite{Necoara2009a}. This opens for the possibility of solving a sequence of dual problems $\left\{\min_\lambda d(\lambda, \tau) \right\}_{\tau \rightarrow 0}$ where each problem is self-concordant and therefore easily solved with Newton's method.
 
-In contrast to methods based on the \emph{augmented Lagrangian} \cite{Kozma2013}, the separability of the dual function is preserved, and the relaxed dual function can be evaluated in parallel as:
+In contrast to methods based on the \emph{augmented Lagrangian} \cite{Kozma2013}, the separability of the dual function is preserved, and the relaxed dual function can be computed in parallel using:
 \begin{equation}
 \label{e:relaxeddualfunction}
 d(\lambda, \tau) = -\sum_{k=1}^M \min_{z_k \in \mathcal{Z}_k} \left( \mathcal{L}_k(z_k, \lambda) - \tau \sum_{i=1}^{m_k} \log([s_k]_i) \right)
 \end{equation}
-Observe that evaluating (\ref{e:relaxeddualfunction}) involves solving $M$ subproblems of the form:
+Observe that evaluating (\ref{e:relaxeddualfunction}) involves solving $M$ independent subproblems of the form:
 \begin{equation}
 \label{e:localproblem}
 \begin{aligned}
@@ -238,7 +253,7 @@ Observe that evaluating (\ref{e:relaxeddualfunction}) involves solving $M$ subpr
 \end{aligned}
 \end{equation}
 
-Moreover, strict convexity of (\ref{e:relaxeddualfunction}) implies that the gradient of $d(\lambda, \tau)$ with respect to $\lambda$ is given by the residual of the coupling constraints \cite{Bertsekas1989}, i.e.
+Strict convexity of (\ref{e:relaxedproblem}) implies that the gradient of $d(\lambda, \tau)$ with respect to $\lambda$ is given by the residual of the coupling constraints \cite{Bertsekas1989}, i.e.
 \begin{equation}
 \label{e:dualgradient}
 \nabla d(\lambda, \tau) = -\sum_{k=1}^N F_k z_k^*(\lambda, \tau) + e
@@ -253,14 +268,10 @@ The dual Hessian is then given by:
 A Newton direction $\Delta \lambda$ in the dual space can then be obtained as a solution to the Newton system:
 \begin{equation}
 \label{e:NewtonSystem}
-\nabla^2 d(\lambda, \tau) \Delta \lambda + \nabla d(\lambda, \tau) = 0
+\nabla^2 d(\lambda, \tau) \Delta \lambda + \nabla_{\lambda} d(\lambda, \tau) = 0
 \end{equation}
 
-\section{Structure in the dual Hessian}
-
-\subsection{Dual Hessian}
-
-By introducing $y_k = \tau s_k^{-1} \in \mathbb{R}^{t_k (N + 1)}$, the KKT conditions to (\ref{e:localproblem}) are given by:
+Moreover, by introducing $y_k = \tau s_k^{-1} \in \mathbb{R}^{t_k (N + 1)}$, the KKT conditions to (\ref{e:localproblem}) are given by:
 \begin{subequations} \label{e:KKTconditions}
 \begin{align}
 & 0 = H_k z_k^* + c_k + F_k^T \lambda + C_k^T \mu_k^* + G_k^T y_k^* \\
@@ -270,8 +281,7 @@ By introducing $y_k = \tau s_k^{-1} \in \mathbb{R}^{t_k (N + 1)}$, the KKT condi
 & s_k^* > 0, \quad y_k^* > 0
 \end{align}
 \end{subequations}
-
-As we have seen in the previous section, that in order to form the dual Hessian we need to compute $\frac{\partial z_k^*(\lambda)}{\partial \lambda}$, where $z_k^*(\lambda)$ is the optimal primal solution and is hence fulfilling (\ref{e:KKTconditions}). By differentiating (\ref{e:KKTconditions}), the following linear system is obtained \cite{Klintberg2014}:
+By differentiating (\ref{e:KKTconditions}), the following linear system is obtained \cite{Klintberg2014}:
 \begin{equation}
 \label{e:SensitivityLambda}
 \left[ \begin{array}{cccc}
@@ -293,23 +303,56 @@ F_k^T \\
 0
 \end{array} \right]
 \end{equation}
-If block elimination of (\ref{e:SensitivityLambda}) is used, the \emph{normal equations}, equivalent to (\ref{e:SensitivityLambda}), can be formed \cite{Wright1997}:
+from which solution, $\frac{\partial z_k^*}{\partial \lambda}$, the dual Hessian can be formed according to (\ref{e:dualhessian}).
+
+
+\section{Quasi-structure of the dual Hessian} \label{S:TheoreticalDecay}
+
+\subsection{Motivational example}
+
+\subsection{Quasi-banded}
+In Section \ref{s:DualDecomposition}, we presented a way of computing the dual Hessian. In this section, we will detail its properties by forming an explicit expression and characterizing a quasi-banded structure.
+
+\begin{proposition}
+The Hessian of the dual function $d(\lambda, \tau)$ is given by:
+\begin{equation}
+\label{e:dualhessian2}
+\nabla^2 d(\lambda, \tau) = \sum_{k=1}^M F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
+\end{equation}
+where
+\begin{align}
+& \Phi_k = H_k + G_k^T S_k^{-1} Y_k G_k \label{e:Phi} \\
+& \Lambda_k = C_k \Phi_k^{-1} C_k^{T} \label{e:Lambda}
+\end{align}
+\end{proposition}
+\begin{proof}
+By using block elimination of (\ref{e:SensitivityLambda}), it can be obtained that:
 \begin{subequations}
 \begin{align}
 & \Lambda_k (s_k, y_k) \frac{\partial \mu_k^*}{\partial \lambda} = -C_k \Phi_k^{-1} F_k^T \label{e:firstNormalEquation} \\
-& \Phi_k (s_k, y_k) \frac{\partial z_k^*}{\partial \lambda} = -F_k^T - C_k^T \frac{\partial \mu_k^*}{\partial \lambda} \label{e:secondNormalEquation} \\
-& \frac{\partial s_k^*}{\partial \lambda} = -G_k \frac{\partial z_k^*}{\partial \lambda} \\
-& \frac{\partial y_k^*}{\partial \lambda} = -S^{-1} Y \frac{\partial s_k^*}{\partial \lambda}
+& \Phi_k (s_k, y_k) \frac{\partial z_k^*}{\partial \lambda} = -F_k^T - C_k^T \frac{\partial \mu_k^*}{\partial \lambda} \label{e:secondNormalEquation}
 \end{align}
 \end{subequations}
 where
 \begin{subequations}
 \begin{align}
-& \Phi_k (s_k, y_k) = H_k + G_k^T S_k^{-1} Y_k G_k \in \mathbb{S}_{++}^{(N+1)n_k \times (N+1)n_k} \label{e:Phi} \\
-& \Lambda_k (s_k, y_k) = C_k \Phi_k^{-1} C_k^{T} \in \mathbb{S}_{++}^{N l_k \times N l_k} \label{e:Lambda}
+& \Phi_k (s_k, y_k) = H_k + G_k^T S_k^{-1} Y_k G_k \in \mathbb{S}_{++}^{(N+1)n_k \times (N+1)n_k} \\
+& \Lambda_k (s_k, y_k) = C_k \Phi_k^{-1}(s_k, y_k) C_k^{T} \in \mathbb{S}_{++}^{N l_k \times N l_k}
 \end{align}
 \end{subequations}
-In the following we omit the arguments and use $\Phi_k = \Phi_k(s_k, y_k)$ and $\Lambda_k = \Lambda_k (s_k, y_k)$. Moreover, observe that according to (\ref{e:Phi}), $\Phi_k$ is block diagonal with blocks $\Phi_{k,i} = H_{k,i} + G_{i,k}^T S_{k,i}^{-1} Y_{k,i} G_{k,i}$. As a consequence, $\Lambda_k$ has a block tridiagonal structure given by:
+By using (\ref{e:firstNormalEquation}) to eliminate $\frac{\partial \mu_k^*}{\partial \lambda}$ in (\ref{e:secondNormalEquation}), the following is obtained:
+\begin{equation}
+\label{e:localcontributions}
+F_k \frac{\partial z_k^*}{\partial \lambda} = -F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
+\end{equation}
+where we, for the sake of brevity, have omitted the arguments and used $\Phi_k = \Phi_k(s_k, y_k)$ and $\Lambda_k = \Lambda_k (s_k, y_k)$. As a consequence, the dual Hessian (\ref{e:dualhessian}) can be written as
+\begin{equation}
+\nabla^2 d(\lambda, \tau) = \sum_{k=1}^M F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
+\end{equation}
+\qed
+\end{proof}
+\begin{remark}
+Observe, that the relaxed dual Hessian of a problem distributed in space according to (\ref{e:problem1}) can always be written on the form (\ref{e:dualhessian2}), regardless of the additional structure in time described by (\ref{e:problem}). However, by considering the structure in time, it can be observed from (\ref{e:Phi}) that $\Phi_k$ is block diagonal with blocks $\Phi_{k,i} = H_{k,i} + G_{i,k}^T S_{k,i}^{-1} Y_{k,i} G_{k,i}$, and as a consequence, $\Lambda_k$ has a block tridiagonal structure given by:
 \begin{equation}
 \Lambda_k = \left[ \begin{array}{cccc} 
 \Lambda_{11} &  \Lambda_{12} &   &  \\
@@ -326,21 +369,9 @@ where
 & \Lambda_{i,i+1} = D_{k,i} \Phi_{k,i}^{-1}C_{k,i}^T \in \mathbb{R}^{l_{k} \times l_{k}}
 \end{align}
 \end{subequations}
+\end{remark}
 
-By using (\ref{e:firstNormalEquation}) and (\ref{e:secondNormalEquation}), it can be obtained that:
-\begin{equation}
-\label{e:localcontributions}
-F_k \frac{\partial z_k}{\partial \lambda} = -F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
-\end{equation}
-As a consequence, the dual Hessian (\ref{e:dualhessian}) can be written as
-\begin{equation}
-\label{e:dualhessian2}
-\nabla^2 d(\lambda, \tau) = \sum_{k=1}^M F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
-\end{equation}
-Accordingly, all matrices in (\ref{e:dualhessian2}) are banded except $\Lambda_k^{-1}$ which in general is dense.
-
-\subsection{Quasi-structure the dual Hessian} \label{S:TheoreticalDecay}
-Let us first assume that the problem data is bounded.
+Note that all matrices in (\ref{e:dualhessian2}) are banded except $\Lambda_k^{-1}$ which in general is dense, and consequently, makes also the dual Hessian dense. However, $\nabla^2 d(\lambda,\tau)$ possess a quasi-banded structure, which will be characterized in the following. In the analysis we consider two assumptions. First, we assume boundedness of the problem data:
 \begin{assumption} \label{a:BoundedData}
 The row and column absolute sums of Jacobians of equality constraints (i.e. (\ref{e:CoupConst}) and (\ref{e:3})) are bounded. Hence:
 \begin{enumerate}
@@ -353,23 +384,22 @@ where $\bullet$ represent $\infty$ and $1$.
 \begin{remark}
 It should be observed that Assumption \ref{a:BoundedData} is not by any means restrictive, since any solver would struggle with a problem where it is not fulfilled \cite{}. 
 \end{remark}
-
 Furthermore, we assume boundedness of $\Phi_k^{-1}$:
 \begin{assumption} \label{a:BoundedConditioning}
 The row and column absolute sums of $\Phi_k^{-1}$ are bounded. Hence:
 \begin{equation}
-\| \Phi_{k,i}^{-1} \|_\infty = \| \Phi_{k,i}^{-1} \|_1 \leq \gamma_{\Phi_k^{-1}}, \quad \forall i
+\| \Phi_{k,i}^{-1} \|_\bullet \leq \gamma_{\Phi_k^{-1}}, \quad \forall i
 \end{equation}
+where $\bullet$ represents $\infty$ and $1$.
 \end{assumption}
 \begin{remark}
-$\| \Phi_{k,i}^{-1} \|_\infty = \| \Phi_{k,i}^{-1} \|_1$ is not an assumption, but a result of $\Phi_k$ being symmetric.
+As a result of $\Phi_k$ being symmetric, $\| \Phi_{k,i}^{-1} \|_\infty = \| \Phi_{k,i}^{-1} \|_1$.
 \end{remark}
 \begin{remark}
 Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{WrightM1998}. Indeed, since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. However, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ are lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not restrictive to assume boundedness of $\Phi_k^{-1}$.
 \end{remark}
 
-Inverses of sparse matrices are in general dense, but individual elements are often small in absolute value \cite{Benzi2002}. Since $\Lambda_k$ is banded, symmetric and positive definite, we will use the following classical result:
-
+Let us start by characterizing the structure of $\Lambda_k^{-1}$. Indeed, inverses of sparse matrices are in general dense, but they typically contain many elements that are small in magnitude \cite{Benzi2002}. Since $\Lambda_k$ is banded, symmetric and positive definite, we will use the following classical result:
 \begin{lemma} \label{l:decay}
 If $A$ is Hermitian positive definite and $m$-banded, i.e. $[A]_{ij} = 0$ if $|i-j| > m$, the entries of $A^{-1}$ satisfy the following bound:
 \begin{equation}
@@ -381,12 +411,12 @@ where $\sigma_{\min}(A)$ and $\kappa(A)$ are the the smallest singular value and
 A proof is given in \cite{Demko1986}. \qed
 \end{proof}
 \begin{remark}
-The entries in $A^{-1}$ are bounded by an exponentially decaying function along each row or column. However, the bound depends on the condition number and the bandwidth of the matrix. Matrices with a high condition number and/or a high bandwidth can therefore result in a large $K$ and $\omega \approx 1$, leading to a slow decay. The opposite, i.e. a low condition number and a small band, would result in a rapid decay.
+The entries in $A^{-1}$ are bounded by an exponentially decaying function along each row or column. However, the bound depends on the condition number and the bandwidth of the matrix. Matrices with a high condition number and/or a high bandwidth can therefore result in a large $K$ and $\omega \approx 1$, leading to a slow decay. A low condition number and a small band results in a rapid decay.
 \end{remark}
 \begin{remark}
 Observe that due to the block tridiagonal structure of $\Lambda_k$, it is $3 l_k$-banded, i.e. $m = 3 l_k$ for $\Lambda_k$.
 \end{remark}
-In the following, if we introduce the notation
+Accordingly, if we introduce the notation
 \begin{equation}
 \Lambda_k^{-1} = \left[ \begin{array}{cccc}
 T_{11} & T_{21}^T & \hdots & T_{N+1,1}^T \\
@@ -404,20 +434,23 @@ The off-diagonal blocks (i.e. $T_{i,j}$ where $i - j > 0$) in $\Lambda_k^{-1}$ s
 \end{equation}
 where $\bullet$ represents $\infty$ and $1$, $\sigma_{\min}(\Lambda_k)$ and $\kappa(\Lambda_k)$ are the the smallest singular value and the condition number of $\Lambda_k$ respectively, $K_{\Lambda_k} = \max \{ \sigma_{\min}(\Lambda_k)^{-1}, 1 + \sqrt{\kappa(\Lambda_k)} \} l_k \omega_{\Lambda_k}^{1/l_k}$ and $\omega_{\Lambda_k} = \left( \frac{\sqrt{\kappa(\Lambda_k)} - 1}{\sqrt{\kappa(\Lambda_k)} + 1} \right)^{\frac{1}{3}}$.
 \end{proposition}
-
 \begin{proof}
 According to Lemma \ref{l:decay}, the element in $T_{i,j}$ with the largest bound is located in the top-right corner, and is hence the element $[\Lambda_k^{-1}]_{i l_k + 1, j l_k}$ in $\Lambda_k^{-1}$. By directly applying Lemma \ref{l:decay} it follows that:
 \begin{equation}
 \max \left| [ T_{ij} ] \right| \leq \max \{ \sigma_{min}(\Lambda_k)^{-1}, 1 +  \sqrt{\kappa(\Lambda_k)} \} \left( \frac{ \sqrt{\kappa(\Lambda_k)} - 1}{ \sqrt{\kappa(\Lambda_k)} + 1} \right)^{\frac{1}{3l_k}((i - j)l_k + 1)}
 \end{equation}
-where $\max \left| [ T_{ij} ] \right| $ refers to the maximum absolute value of the components in $T_{ij}$. Moreover, since there are $l_k$ elements in each row or column of a block $T_{i,j}$, we obtain the bounds given in (\ref{e:decayofLambda}).
+where $\max \left| [ T_{ij} ] \right| $ refers to the maximum absolute value of the components in $T_{ij}$. Moreover, since there are $l_k$ elements in each row or column of a block $T_{i,j}$, we obtain:
+\begin{equation} \label{e:decayofLambda2}
+\| T_{i,j} \|_\bullet \leq l_k \max \{ \sigma_{min}(\Lambda_k)^{-1}, 1 +  \sqrt{\kappa(\Lambda_k)} \} \left( \frac{ \sqrt{\kappa(\Lambda_k)} - 1}{ \sqrt{\kappa(\Lambda_k)} + 1} \right)^{\frac{1}{3l_k}((i - j)l_k + 1)}
+\end{equation}
+where $\bullet$ represents $\infty$ and $1$. Observe that (\ref{e:decayofLambda2}) is the same as (\ref{e:decayofLambda}).
 \qed
 \end{proof}
 \begin{remark}
-The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in (\ref{e:decayofLambda}) depends heavily on the conditioning of $\Lambda_k$, which for interior point methods in general can be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
+The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in (\ref{e:decayofLambda}) depends heavily on the conditioning of $\Lambda_k$, which for interior point methods can in general be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
 \end{remark}
 
-We have concluded that $\Lambda_k^{-1}$ is decaying exponentially towards the off-diagonal corners and that all other matrices in (\ref{e:dualhessian2}) are banded. This suggests that also $\nabla^2 d(\lambda, \tau)$ should decay towards the off-diagonal corners. Let us introduce the notation:
+We have concluded that $\Lambda_k^{-1}$ is decaying exponentially towards its off-diagonal corners and that $C_k$ is block bi-banded. This suggests that also $C_k^T \Lambda_k^{-1} C_k$, which enters in the expression of $\nabla^2 d(\lambda, \tau)$, should decay towards the off-diagonal corners. Let us introduce the notation:
 \begin{equation}
 C_k^T \Lambda_k^{-1} C_k = \left[ \begin{array}{cccc}
 V_{11} & V_{21}^T & \hdots & V_{N+1,1}^T \\
@@ -439,18 +472,26 @@ where $\bar{K}_{\Lambda_k} = (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) 
 \end{proposition}
 \begin{proof}
 By performing the multiplication $C_k^T \Lambda_k^{-1} C_k$, we find that:
-\begin{equation}
+\begin{equation} \label{e:intermediateDecay1}
 \begin{aligned}
 V_{i,j} = D_{k,i-1}^T T_{i,j-1} D_{k,j-1} + & C_{k,i-1}^T T_{i-1,j-1} D_{k,j-1} + \\ + & D_{k,i-1}^T T_{i-1,j} C_{k,j-1} + C_{k,i-1}^T T_{i,j} C_{k,j-1}
 \end{aligned}
 \end{equation}
-for $i - j > 0$. Furthermore, by using Assumption \ref{a:BoundedData} and (\ref{e:decayofLambda}), we can bound establish the following bound:
+for $i - j > 0$. Using the Cauchy-Schwarz inequality, Assumption \ref{a:BoundedData} and (\ref{e:decayofLambda}), each term in (\ref{e:intermediateDecay1}) can be bounded according to:
+\begin{subequations}
+\begin{align}
+& \| D_{k,i-1}^T T_{i,j-1} D_{k,j-1} \|_\bullet \leq \gamma^2 K_{\Lambda_k} \omega_{\Lambda_k}^{i-j+1} \\
+& \| C_{k,i-1}^T T_{i-1,j-1} D_{k,j-1} \|_\bullet \leq \gamma^2 K_{\Lambda_k} \omega_{\Lambda_k}^{i-j} \\
+& \| D_{k,i-1}^T T_{i-1,j} C_{k,j-1} \|_\bullet \leq \gamma^2 K_{\Lambda_k} \omega_{\Lambda_k}^{i-j-1} \\
+& \| C_{k,i-1}^T T_{i,j} C_{k,j-1} \|_\bullet \leq \gamma^2 K_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
+\end{align}
+\end{subequations}
+where $\bullet$ represents $\infty$ and $1$. Hence, we can establish the following bound:
 \begin{equation}
 \| V_{i,j} \|_{\bullet} \leq \gamma^2 (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) K_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
 \end{equation}
 \qed
 \end{proof}
-
 Let us now introduce the notation:
 \begin{equation} \label{e:HessianBlocks}
 \nabla^2 d(\lambda, \tau) = \left[ \begin{array}{cccc}
@@ -471,9 +512,18 @@ The off-diagonal blocks (i.e. $W_{i,j}$ where $i - j > 0$) of $\nabla^2 d(\lambd
 where $\bullet$ represents $\infty$ and $1$.
 \end{proposition}
 \begin{proof}
-Since $\Phi_k^{-1}$ is block-diagonal, the off-diagonal blocks of $F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T$ and $-F_k \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1} F_k^T$ are identical. Accordingly, by using Assumption \ref{a:BoundedData}, Assumption \ref{a:BoundedConditioning}, Proposition \ref{p:intermediateDecay} and adding the contributions from all subproblems together, brings us to (\ref{e:DecayHessian}).
+Recall that the dual Hessian is given by (\ref{e:dualhessian2}). Moreover, observe that the terms $F_k \Phi_k^{-1} F_k^T$ are block-diagonal and does therefore not contribute to the off-diagonal blocks in $\nabla^2 d(\lambda, \tau)$. Therefore, for $i - j > 0$:
+\begin{equation}
+\| W_{i,j} \|_\bullet = \left\| \sum_{k=1}^M F_{k,i} \Phi_{k,i}^{-1} V_{i,j} \Phi_{k,j}^{-1} F_{k,j} \right\|_\bullet \leq \sum_{k=1}^M \left\| F_{k,i} \Phi_{k,i}^{-1} V_{i,j} \Phi_{k,j}^{-1} F_{k,j} \right\|_\bullet
+\end{equation}
+where $\bullet$ represents $\infty$ and $1$. Moreover, by using Assumption \ref{a:BoundedData}, Assumption \ref{a:BoundedConditioning} and Proposition \ref{p:intermediateDecay}, we can establish:
+\begin{equation}
+\| W_{i,j} \|_\bullet \leq \sum_{k=1}^M \gamma^2 \gamma_{\Phi_k^{-1}}^2 \left\| V_{i,j} \right\|_\bullet \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
+\end{equation}
 \qed
 \end{proof}
+Proposition \ref{p:DecayHessian} concludes the characterization of the quasi-banded structure of $\nabla^2 d(\lambda,\tau)$. The structure opens for the possibility of using only a diagonal band of the dual Hessian in (\ref{e:NewtonSystem}), to find an approximate Newton step.
+
 
 Let $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ represent the diagonal $\mathcal{M}$-block band of (\ref{e:HessianBlocks}), which in the following will be referred to as the \emph{clipped dual Hessian}. Moreover, recall Gershgorin's circle theorem:
 \begin{theorem} \label{l:Gerschgorin}
@@ -483,8 +533,7 @@ For $A \in \mathbb{R}^{n \times n}$ with elements $a_{ij}$, let $R_i = \sum_{j \
 A proof is given in \cite{HornR2013}.
 \qed
 \end{proof}
-
-We can now establish our main result:
+We can now establish a bound on the euclidean distance between the dual Hessian and its clipped counterpart:
 \begin{lemma} \label{l:EuclidianDistance}
 The following bound holds:
 \begin{equation} \label{e:EuclidianDistance}
@@ -493,15 +542,24 @@ The following bound holds:
 where $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k} =  (2 + \omega_{\Lambda_k} + \omega_{\Lambda_k}^{-1}) K_{\Lambda_k}$.
 \end{lemma}
 \begin{proof}
-Since $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ is symmetric, its singular values are equal to the absolute value of its eigenvalues. The problem of finding a bound on the $2$-norm is hence reduced to the problem of bounding the magnitude of the largest eigenvalue.
+Note that $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ is symmetric, which implies that:
+\begin{equation}
+\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 = | \lambda_{\max} ( \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) ) |
+\end{equation}
+where $\lambda_{\max}$ represents the largest eigenvalue. Let us use Gershgorin's circle theorem to bound the largest eigenvalue. Since, the diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ are zero, all Gershgorin discs are centered in the origin. Since the maximum absolute row sum is equal to the largest Gershgorin radius, this implies that:
+\begin{equation}
+| \lambda_{\max} ( \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) ) | \leq \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_{\infty}
+\end{equation}
 
-First, observe that all diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ are zero, all Gershgorin discs will hence be centered at the origin. A bound on the largest eigenvalue can then be found by finding the largest radius of the Gershgorin discs.
-
-According to (\ref{e:DecayHessian}), the blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound on the maximum absolute row sum are located next to the diagonal $\mathcal{M}$-block band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. Furthermore, there is at least $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks at each block row. This means that we can establish a bound on the radius of the Gershgorin discs, and hence the following:
+Observe that each block row in $ \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ has not more than $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks. Moreover, according to (\ref{e:DecayHessian}), the blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound on the maximum absolute row sum are located next to the diagonal $\mathcal{M}$-block band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. This means that:
 \begin{equation} \label{e:BoundGershgorinRadius}
+\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_{\infty} \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
+\end{equation}
+Accordingly, we can establish:
+\begin{equation} 
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
-Equation (\ref{e:EuclidianDistance}) is then directly obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
+where (\ref{e:EuclidianDistance}) is obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
 \qed
 \end{proof}
 
@@ -522,7 +580,8 @@ If $\mathcal{M}$ is chosen such that:
 \begin{equation} \label{e:nonsingularClippedHessian}
 \lambda_{\min}( \nabla^2 d(\lambda, \tau) ) > \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
 \end{equation}
-then $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
+
+$\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
 \end{lemma}
 \begin{proof}
 Observe that
@@ -554,15 +613,15 @@ Observe that (\ref{e:nonsingularClippedHessian}) is a sufficient and not a neces
 
 \subsection{Selection of bandwidth}
 
-In the previous section, we have seen that the clipped dual Hessian is positive definite and close, in an euclidean sense, to the exact Hessian provided that the band $\mathcal{M}$ is wide enough. Here, we aim at formalizing criterions for selecting the bandwidth.
+In the previous section, we have seen that the clipped dual Hessian is positive definite and close, in an euclidean sense, to the exact Hessian provided that the band $\mathcal{M}$ is wide enough. Here, we aim at formalizing criterions for selecting the bandwidth $\mathcal{M}$.
 
 \begin{theorem} If the dual function fulfills:
 \begin{equation} \label{e:ConditionHessian}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
 \end{equation}
 then the following bound holds:
 \begin{equation} \label{e:Convergence}
-\| \nabla d(\lambda^+,\tau) \|_2 \leq \omega \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
+\| \nabla d(\lambda^+,\tau) \|_2 \leq \omega_1 \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
 \end{equation}
 where
 \begin{equation}
@@ -577,8 +636,8 @@ Recall that an approximate Newton step computed with the clipped dual Hessian is
 Moreover, to avoid a heavy notation, we will omit arguments when they are obvious from the context and introduce the the notation $\nabla d^+ = \nabla d(\lambda + \Delta \lambda, \tau)$. We can then express:
 \begin{equation}
 \begin{aligned} \label{e:convergence1}
-\| \nabla d^+ \|_2 = & \| \nabla d^+ - \nabla d - \lfloor \nabla^2 d \rceil_{\mathcal{M}} \Delta \lambda \|_2 = \\
-= & \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) \Delta \lambda ) \text{dt} -  \lfloor \nabla^2 d \rceil_{\mathcal{M}} \Delta \lambda \right\|_2 = \\
+\| \nabla d^+ \|_2 & = \| \nabla d^+ - \nabla d - \lfloor \nabla^2 d \rceil_{\mathcal{M}} \Delta \lambda \|_2 = \\
+= & \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) \Delta \lambda ) \text{dt} -  \lfloor \nabla_{\lambda\lambda} d \rceil_{\mathcal{M}} \Delta \lambda \right\|_2 = \\
 = & \left\| \left( \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt} + \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathcal{M}}  \right) \Delta \lambda \right\|_2 = \\
 = & \left\| \left( \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt} + \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathcal{M}}  \right)  \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \nabla d \right\|_2 
 \end{aligned}
@@ -589,11 +648,11 @@ where we have used (\ref{e:approxNewtonSystem}) and the following result from ca
 \end{equation}
 Consequently, we can bound (\ref{e:convergence1}) according to:
 \begin{equation}
-\| \nabla d^+ \|_2 \leq \omega \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
+\| \nabla d^+ \|_2 \leq \omega_1 \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
 \end{equation}
 where we have introduced:
 \begin{equation}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
 \end{equation}
 and
 \begin{equation}
@@ -629,7 +688,7 @@ Observe that:
 \qed
 \end{proof}
 
-In terms of iterations, the optimal choice would be to use the full dual Hessian and hence make $f(\mathcal{M}) = 0$. However, since a dense factorization is more costly than its banded counterpart, the overall complexity of solving a problem can be lower if a nonzero $f(\mathcal{M})$ is used.
+In terms of iterations, the optimal choice would be to use the full dual Hessian and hence make $f(\mathcal{M}) = 0$. However, since a dense factorization is more costly than its banded counterpart, the overall complexity of solving a problem can be lower if a nonzero $f(\mathcal{M})$ is used. As an illustrative example, the complexity of finding a Cholesky factorization of a dense matrix $A \in S_{+}^n$ is $\frac{1}{3}n^3$ flops. On the other hand, if $A$ is $k-$banded (where $k \ll n$), the complexity is reduced to $nk^2$ flops.
 
 \section{Numerical experiments}
 
@@ -656,7 +715,7 @@ The absolute values of the elements in the dual Hessian evaluated at the solutio
 \label{fig:test}
 \end{figure}
 
-Let us investigate the consistency of the decay with respect to $\lambda$. The maximal absolute value of the elements in $\nabla^2 d(\lambda, \tau)$ for given distances from its diagonal, are visualized in Figure \ref{f:HessianDecayN30Tau1} for 50 randomly selected values of $\lambda$. More specifically, the metric used in Figure \ref{f:HessianDecayN30Tau1} is:
+Let us investigate the consistency of the decay with respect to $\lambda$. The maximal absolute value of the elements in $\nabla_{\lambda\lambda} d(\lambda, \tau)$ for given distances from its diagonal, are visualized in Figure \ref{f:HessianDecayN30Tau1} for 50 randomly selected values of $\lambda$. More specifically, the metric used in Figure \ref{f:HessianDecayN30Tau1} is:
 \begin{equation}
 \begin{aligned}
 \max_{i,j} & \quad | [\nabla^2 d(\lambda,\tau)]_{i,j} | \\

@@ -7,18 +7,13 @@
   \urlstyle{rm}\Url}\fi
 
 \bibitem{Benzi2002}
-Benzi, M.: {P}reconditioning {T}echniques for {L}arge {L}inear {S}ystems: {A}
-  {S}urvey.
+Benzi, M.: Preconditioning techniques for large linear systems: a survey.
 \newblock Journal of Computational Physics \textbf{182}, 418--477 (2002)
 
 \bibitem{Bertsekas1989}
 Bertsekas, D., Tsitsiklis, J.N.: {P}arallel and distributed computation:
   {N}umerical methods.
 \newblock Prentice Hall (1989)
-
-\bibitem{Boyd2004}
-Boyd, S., Vandenberghe, L.: {C}onvex {O}ptimization.
-\newblock University {P}ress, Cambridge (2004)
 
 \bibitem{Demko1986}
 Demko, S., Moss, W., Smith, P.: Decay rates for inverses of band matrices.
@@ -30,6 +25,21 @@ Domahidi, A., Zgraggen, A., Zeilinger, M., Morari, M., Jones, C.: Efficient
   {R}eceding {H}orizon {C}ontrol.
 \newblock In: IEEE Conference on Decision and Control (CDC), pp. 668 -- 674.
   Maui, HI, USA (2012)
+
+\bibitem{Frasch2014}
+Frasch J.and~Vukov, M., Ferreau H.and~Diehl, M.: A new quadratic programming
+  strategy for efficient sparsity exploitation in sqp-based nonlinear mpc and
+  mhe.
+\newblock In: Proceedings of the 19th IFAC World Congress (2014)
+
+\bibitem{Giselsson2014a}
+Giselsson, P.: Improved dual decomposition for distributed model predictive
+  control.
+\newblock In: Proceedings of the 19th IFAC World Congress (2014)
+
+\bibitem{Giselsson2014b}
+Giselsson P.and~Boyd, S.: Preconditioning in fast dual gradient methods.
+\newblock In: IEEE Conference on Decision and Control (2014)
 
 \bibitem{HornR2013}
 Horn, R.A., Johnson, C.R.: Matrix Analysis - 2nd ed.
@@ -51,6 +61,11 @@ Kozma, A., Klintberg, E., Gros, S., Diehl, M.: An improved distributed dual
   {N}ewton-{CG} method for convex quadratic programming problems.
 \newblock In: American Control Conference (2014)
 
+\bibitem{Necoara2014a}
+Necoara, I., Nedelcu, V.: Rate analysis of inexact dual first-order methods
+  application to dual decomposition.
+\newblock IEEE Trans. Automat. Control \textbf{59}, 1232--1243 (2014)
+
 \bibitem{Necoara2009a}
 Necoara, I., Suykens, J.: An interior-point {L}agrangian decomposition method
   for separable convex optimization.
@@ -61,13 +76,14 @@ Nocedal, J., Wright, S.: {N}umerical {O}ptimization, 2 edn.
 \newblock Springer Series in Operations Research and Financial Engineering.
   Springer (2006)
 
+\bibitem{Wei2013}
+Wei E.and~Ozdaglar, A., Jadbabaie, A.: A distributed newton method for network
+  utility maximization-i: Algorithm.
+\newblock IEEE Trans. Automat. Control \textbf{58} (2013)
+
 \bibitem{WrightM1998}
 Wright, M.: Ill-conditioning and computational error in interior methods for
   nonlinear programming.
 \newblock SIAM Journal on Optimization \textbf{9}, 84--111 (1998)
-
-\bibitem{Wright1997}
-Wright, S.: {P}rimal-{D}ual {I}nterior-{P}oint {M}ethods.
-\newblock {SIAM} Publications, Philadelphia (1997)
 
 \end{thebibliography}
