@@ -4,45 +4,46 @@ The top-level auxiliary file: template.aux
 The style file: spmpsci.bst
 Database file #1: optec.bib
 Warning--I didn't find a database entry for ""
-You've used 16 entries,
+Warning--can't use both author and editor fields in Kozma2014
+You've used 30 entries,
             2946 wiz_defined-function locations,
-            794 strings with 8858 characters,
-and the built_in function-call counts, 9622 in all, are:
-= -- 1044
-> -- 207
-< -- 1
-+ -- 128
-- -- 70
-* -- 413
-:= -- 1038
-add.period$ -- 19
-call.type$ -- 16
-change.case$ -- 94
+            889 strings with 12173 characters,
+and the built_in function-call counts, 19520 in all, are:
+= -- 2123
+> -- 450
+< -- 6
++ -- 269
+- -- 156
+* -- 872
+:= -- 2069
+add.period$ -- 42
+call.type$ -- 30
+change.case$ -- 191
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 1060
-empty$ -- 715
-format.name$ -- 82
-if$ -- 2024
+cite$ -- 31
+duplicate$ -- 2129
+empty$ -- 1413
+format.name$ -- 181
+if$ -- 4116
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 146
-newline$ -- 73
-num.names$ -- 32
-pop$ -- 463
+int.to.str$ -- 30
+missing$ -- 287
+newline$ -- 138
+num.names$ -- 60
+pop$ -- 926
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 138
 quote$ -- 0
-skip$ -- 465
+skip$ -- 948
 stack$ -- 0
-substring$ -- 380
-swap$ -- 765
-text.length$ -- 1
+substring$ -- 777
+swap$ -- 1585
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 58
-warning$ -- 0
-while$ -- 47
-width$ -- 18
-write$ -- 163
-(There was 1 warning)
+type$ -- 108
+warning$ -- 1
+while$ -- 91
+width$ -- 32
+write$ -- 314
+(There were 2 warnings)

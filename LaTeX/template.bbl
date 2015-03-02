@@ -15,6 +15,18 @@ Bertsekas, D., Tsitsiklis, J.N.: {P}arallel and distributed computation:
   {N}umerical methods.
 \newblock Prentice Hall (1989)
 
+\bibitem{Conte2013}
+Conte, C., Zeilinger, M., Morari, M., Jones, C.: Robust distributed model
+  predictive control of linear systems.
+\newblock In: European Control Conference (2013)
+
+\bibitem{Cottle1986}
+Cottle, R.W., Duvall, S.G., Zikan, K.: A lagrangean relaxation algorithm for
+  the constrained matrix problem.
+\newblock Naval Research Logistics Quarterly \textbf{33}(1), 55--76 (1986).
+\newblock \doi{10.1002/nav.3800330106}.
+\newblock \urlprefix\url{http://dx.doi.org/10.1002/nav.3800330106}
+
 \bibitem{Demko1986}
 Demko, S., Moss, W., Smith, P.: Decay rates for inverses of band matrices.
 \newblock Mathemathics of Computation \textbf{43}, 491--499 (1986)
@@ -25,6 +37,12 @@ Domahidi, A., Zgraggen, A., Zeilinger, M., Morari, M., Jones, C.: Efficient
   {R}eceding {H}orizon {C}ontrol.
 \newblock In: IEEE Conference on Decision and Control (CDC), pp. 668 -- 674.
   Maui, HI, USA (2012)
+
+\bibitem{Ferreau2012b}
+Ferreau, H., Kozma, A., Diehl, M.: A parallel active-set strategy to solve
+  sparse parametric quadratic programs arising in {MPC}.
+\newblock In: Proceedings of the 4th IFAC Nonlinear Model Predictive Control
+  Conference, Noordwijkerhout, The Netherlands (2012)
 
 \bibitem{Frasch2014}
 Frasch J.and~Vukov, M., Ferreau H.and~Diehl, M.: A new quadratic programming
@@ -37,13 +55,34 @@ Giselsson, P.: Improved dual decomposition for distributed model predictive
   control.
 \newblock In: Proceedings of the 19th IFAC World Congress (2014)
 
-\bibitem{Giselsson2014b}
-Giselsson P.and~Boyd, S.: Preconditioning in fast dual gradient methods.
-\newblock In: IEEE Conference on Decision and Control (2014)
+\bibitem{Giselsson2013}
+Giselsson, P., Doan, M.D., Keviczky, T., Schutter, B.D., Rantzer, A.:
+  Accelerated gradient methods and dual decomposition in distributed model
+  predictive control.
+\newblock Automatica \textbf{49}(3), 829 -- 833 (2013).
+\newblock \doi{http://dx.doi.org/10.1016/j.automatica.2013.01.009}.
+\newblock
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0005109813000101}
+
+\bibitem{Giselsson2010}
+Giselsson, P., Rantzer, A.: Distributed model predictive control with
+  suboptimality and stability guarantees.
+\newblock In: Decision and Control (CDC), 2010 49th IEEE Conference on, pp.
+  7272--7277 (2010).
+\newblock \doi{10.1109/CDC.2010.5717026}
+
+\bibitem{Gros2014a}
+Gros, S.: A distributed algorithm for nmpc-based wind farm control.
+\newblock In: Conference on Decision and Control (2014)
 
 \bibitem{HornR2013}
 Horn, R.A., Johnson, C.R.: Matrix Analysis - 2nd ed.
 \newblock Cambridge University Press (2013)
+
+\bibitem{Hult2015}
+Hult, R., Campos, G., Falcone, P., Wymeersch, H.: An approximate solution to
+  the optimal coordination problem for autonomous vehicles at intersections.
+\newblock In: American Control Conference (2015)
 
 \bibitem{Klintberg2014}
 Klintberg, E., Gros, S.: A primal-dual newton method for distributed quadratic
@@ -53,33 +92,85 @@ Klintberg, E., Gros, S.: A primal-dual newton method for distributed quadratic
 \bibitem{Kozma2013}
 Kozma, A., Conte, C., Diehl, M.: Benchmarking large scale distributed convex
   quadratic programming algorithms.
-\newblock Optimization Methods \& Software  (2013).
+\newblock Optimization Methods \& Software  (2014).
 \newblock (submitted for publication)
+
+\bibitem{Kozma2013a}
+Kozma, A., Frasch, J.V., Diehl, M.: {A} {D}istributed {M}ethod for {C}onvex
+  {Q}uadratic {P}rogramming {P}roblems {A}rising in {O}ptimal {C}ontrol of
+  {D}istributed {S}ystems.
+\newblock In: Proceedings of the 52nd Conference on Decision and Control (CDC)
+  (2013)
 
 \bibitem{Kozma2014a}
 Kozma, A., Klintberg, E., Gros, S., Diehl, M.: An improved distributed dual
   {N}ewton-{CG} method for convex quadratic programming problems.
 \newblock In: American Control Conference (2014)
 
+\bibitem{Kozma2014}
+Kozma, A., Savorgnan, C., Diehl, M.: Distributed Model Predictive Control Made
+  Easy, \emph{Intelligent Systems, Control and Automation: Science and
+  Engineering}, vol. Vol 69., chap. Distributed multiple shooting for large
+  scale nonlinear systems, p. 604.
+\newblock Springer (2014)
+
+\bibitem{Lasdon1970}
+Lasdon, L.S.: {Optimization theory for Large Systems}.
+\newblock Dover (1970)
+
 \bibitem{Necoara2014a}
 Necoara, I., Nedelcu, V.: Rate analysis of inexact dual first-order methods
   application to dual decomposition.
 \newblock IEEE Trans. Automat. Control \textbf{59}, 1232--1243 (2014)
+
+\bibitem{Necoara2011}
+Necoara, I., Nedelcu, V., Dumitrache, I.: Parallel and distributed optimization
+  methods for estimation and control in networks.
+\newblock Journal of Process Control \textbf{21}(5), 756 -- 766 (2011).
+\newblock \doi{http://dx.doi.org/10.1016/j.jprocont.2010.12.010}.
+\newblock
+  \urlprefix\url{http://www.sciencedirect.com/science/article/pii/S095915241000257X}.
+\newblock Special Issue on Hierarchical and Distributed Model Predictive
+  Control
+
+\bibitem{Necoara2014b}
+Necoara, I., Patrascu, A.: Iteration complexity analysis of dual first order
+  methods for convex programming.
+\newblock Journal of Optimization Theory and Applications (Submitted)  (2014)
 
 \bibitem{Necoara2009a}
 Necoara, I., Suykens, J.: An interior-point {L}agrangian decomposition method
   for separable convex optimization.
 \newblock J. Optim. Theory and Appl. \textbf{143}(3), 567--588 (2009)
 
+\bibitem{Nesterov1994}
+Nesterov, Y., Nemirovski, A.: Interior-point Polynomial Algorithms in Convex
+  Programming.
+\newblock Society for Industrial Mathematics (1994)
+
 \bibitem{Nocedal2006}
 Nocedal, J., Wright, S.: {N}umerical {O}ptimization, 2 edn.
 \newblock Springer Series in Operations Research and Financial Engineering.
   Springer (2006)
 
-\bibitem{Wei2013}
-Wei E.and~Ozdaglar, A., Jadbabaie, A.: A distributed newton method for network
-  utility maximization-i: Algorithm.
-\newblock IEEE Trans. Automat. Control \textbf{58} (2013)
+\bibitem{Perizzato2014}
+Perizzato, A., Farina, M., Scattolini, R.: Stochastic distributed predictive
+  control of independent systems with coupling constraints.
+\newblock In: Conference on Decision and Control (2014)
+
+\bibitem{Richter2011}
+Richter, S., Morari, M., Jones, C.: Towards computational complexity
+  certification for constrained {MPC} based on {L}agrange {R}elaxation and the
+  fast gradient method.
+\newblock In: Decision and Control and European Control Conference (CDC-ECC),
+  2011 50th IEEE Conference on, pp. 5223 --5229 (2011).
+\newblock \doi{10.1109/CDC.2011.6160931}
+
+\bibitem{Quoc2013}
+Tran, D.Q., Necoara, I., Savorgnan, C., Diehl, M.: An inexact perturbed
+  path-following method for lagrangian decomposition in large-scale separable
+  convex optimization.
+\newblock SIAM Journal on Optimization \textbf{23}, 95--125 (2013)
 
 \bibitem{WrightM1998}
 Wright, M.: Ill-conditioning and computational error in interior methods for

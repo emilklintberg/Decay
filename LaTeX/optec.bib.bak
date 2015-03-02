@@ -4981,12 +4981,6 @@
   timestamp = {2009.10.12}
 }
 
-@UNPUBLISHED{Bock2004a,
-  author = {NOW RENAMED TO Bock2006},
-  owner = {moritz},
-  timestamp = {2006.04.28}
-}
-
 @INCOLLECTION{Bock2006,
   author = {NOW RENAMED TO Bock2007},
   owner = {mdiehl},
@@ -7338,6 +7332,15 @@
   url = {http://control.ee.ethz.ch/index.cgi?page=publications;action=details;id=4192}
 }
 
+@CONFERENCE{Conte2013,
+  author = {Conte, C. and Zeilinger, M. and Morari, M. and Jones, C.},
+  title = {Robust Distributed Model Predictive Control of Linear Systems},
+  booktitle = {European Control Conference},
+  year = {2013},
+  owner = {emilklintberg},
+  timestamp = {2015.03.02}
+}
+
 @BOOK{Cook2007,
   title = {{Flight Dynamics Principles}},
   publisher = {{Elsevier Science}},
@@ -9304,28 +9307,10 @@
   timestamp = {2012.03.01}
 }
 
-@UNPUBLISHED{Diehl2004b,
-  author = {NOW RENAMED TO Diehl2005},
-  owner = {moritz},
-  timestamp = {2006.04.28}
-}
-
 @ARTICLE{Diehl2004c,
   author = {NOW RENAMED TO Diehl2005b},
   owner = {mdiehl},
   timestamp = {2008.06.04}
-}
-
-@UNPUBLISHED{Diehl2004d,
-  author = {NOW RENAMED TO Diehl2006b},
-  owner = {moritz},
-  timestamp = {2006.04.28}
-}
-
-@UNPUBLISHED{Diehl2004,
-  author = {NOW RENAMED TO Diehl2006c},
-  owner = {moritz},
-  timestamp = {2006.04.28}
 }
 
 @ARTICLE{Diehl2007c,
@@ -16308,6 +16293,16 @@
   timestamp = {2009.10.08}
 }
 
+@CONFERENCE{Hult2015,
+  author = {Hult, R. and Campos, G. and Falcone, P. and Wymeersch , H.},
+  title = {An approximate solution to the optimal coordination problem for autonomous
+	vehicles at intersections},
+  booktitle = {American Control Conference},
+  year = {2015},
+  owner = {emilklintberg},
+  timestamp = {2015.03.02}
+}
+
 @TECHREPORT{Hundsdorfer2006,
   author = {W. Hundsdorfer and S. J. Ruuth},
   title = {{IMEX} extensions of linear multistep methods with general monotonicity
@@ -18539,11 +18534,11 @@
 }
 
 @ARTICLE{Kozma2013,
-  author = {A. Kozma and Christian Conte and Moritz Diehl},
+  author = {Kozma, A. and Conte, C. and Diehl, M.},
   title = {Benchmarking Large Scale Distributed Convex Quadratic Programming
 	Algorithms},
   journal = {Optimization Methods \& Software},
-  year = {2013},
+  year = {2014},
   note = {(submitted for publication)},
   owner = {akozma},
   timestamp = {2013.08.05}
@@ -22832,6 +22827,16 @@
   url = {http://www.sciencedirect.com/science/article/pii/S095915241000257X}
 }
 
+@ARTICLE{Necoara2014b,
+  author = {Necoara, I. and Patrascu, A.},
+  title = {Iteration complexity analysis of dual first order methods for convex
+	programming},
+  journal = {Journal of Optimization Theory and Applications (Submitted)},
+  year = {2014},
+  owner = {emilklintberg},
+  timestamp = {2015.03.02}
+}
+
 @INPROCEEDINGS{Necoara2009,
   author = {Necoara, I. and Savorgnan, C. and Tran-Dinh, Q. and Suykens, J. A.
 	K. and Diehl, M.},
@@ -24358,6 +24363,16 @@
   keywords = {OPTEC-library},
   owner = {ferreau},
   timestamp = {2008.10.24}
+}
+
+@CONFERENCE{Perizzato2014,
+  author = {Perizzato, A. and Farina, M. and Scattolini, R.},
+  title = {Stochastic Distributed Predictive Control of Independent Systems
+	with Coupling Constraints},
+  booktitle = {Conference on Decision and Control},
+  year = {2014},
+  owner = {emilklintberg},
+  timestamp = {2015.03.02}
 }
 
 @ARTICLE{Perkovic2013,
@@ -32912,6 +32927,16 @@
   file = {:../pdf/Wei2011.pdf:PDF},
   owner = {quoctd},
   timestamp = {2012.05.16}
+}
+
+@ARTICLE{Wei2013,
+  author = {Wei, E.and Ozdaglar, A. and Jadbabaie, A.},
+  title = {A Distributed Newton Method for Network Utility Maximization-I: Algorithm},
+  journal = {IEEE Trans. Automat. Control},
+  year = {2013},
+  volume = {58},
+  owner = {emilklintberg},
+  timestamp = {2015.02.24}
 }
 
 @TECHREPORT{Weiser2001,

@@ -117,61 +117,67 @@ Bla bla bla
 
 \section{Introduction}
 
-\subsection{Some recent stuff to cite}
+Recently there has been a great interest invested in controlling large-scale, networked systems with Model Predictive Control (MPC). Many approaches have emerged, with the common feature that they allow for distributed computations with a limited amount of communication. This is indeed an important property since a large-scale problem easily can be intractable for a single computer. Moreover, when the system is geographically distributed, or when subsystems do not want to share sensitive information, it can be highly impractical to centralize the data of the problem.
 
-\subsubsection{First-order methods} 
-In \cite{Necoara2014a}, rate estimates of two inexact gradient methods are found. In \cite{Giselsson2014a}, a generalized fast gradient method for distributed MPC is presented. In \cite{Giselsson2014b}, a preconditioned fast dual proximal gradient method is derived for central MPC problems. In (Iteration complexity analysis of dual first order methods for convex programming, (only submitted) should we cite anyway?), an unified convergence analysis of dual first-order methods are performed.
+Distributed MPC schemes have been proposed for various classes of control problems. In \cite{Kozma2014}, a distributed multiple shooting method is proposed to tackle large-scale nonlinear MPC problems, in \cite{Perizzato2014}, a method to tackle distributed stochastic MPC problems is proposed, whereas in \cite{Conte2013} distributed robust MPC is discussed.
 
-\subsubsection{Second-order methods}
-The qpDUNES paper at IFAC \cite{Frasch2014}. In \cite{Wei2013}, a distributed Newton method is proposed to maximize network utilization.
+Formulations of distributed MPC schemes can be divided into categories depending on the degree of communication between subsystems. Methods where no communication between the local controllers are allowed are commonly denoted as decentralized MPC. Methods belonging to this class offer great scalability, and can give a good performance when the subsystems are weakly coupled. However, when this is not fulfilled, the performance can be far from optimal. 
+
+Methods where communication between subsystems are allowed, are commonly referred to as cooperative/non-cooperative MPC depending on the cost function used in the local MPC controllers. In \cite{Hult2015}, autonomous vehicles are controlled through traffic intersections.
+
+Another promising approach to achieve distributed MPC is to formulate the MPC problem centrally and solve the underlaying optimization problem with techniques from the field of distributed optimization. A commonly used technique for this purpose is to use a \emph{Lagrangian relaxation} to decompose the optimization problem into low-dimensional subproblems that can be solved independently. 
+
+Lagrangian relaxation is used in many different contexts to tackle convex large-scale problems, e.g. the authors in \cite{Cottle1986} propose a coordinate ascent approach to solve matrix problems. In \cite{Lasdon1970}, \cite{Giselsson2010} a gradient method, whereas in \cite{Richter2011}, \cite{Necoara2011}, \cite{Giselsson2013}, \cite{Giselsson2014a} a fast gradient method is used in order to attain dual optimality. Moreover, in \cite{Necoara2014a}, \cite{Necoara2014b}, convergence rates for first-order methods are studied. All these methods make use of only first-order derivatives when finding a search direction.
+
+Methods using second-order information offer advantages in terms of convergence speed. In the context of active-set methods, this is exploited by the authors in \cite{Ferreau2012b}, \cite{Kozma2013a}, \cite{Kozma2014a}, \cite{Frasch2014}. In \cite{Gros2014a}, it is shown how methods in this class can be used to control wind farms with nonlinear MPC. However, the dual Hessian can be singular if a poor initial guess is used for the dual variables, and hence possibly leading to an inconsistent Newton system. In \cite{Kozma2014a}, this issue was avoided by relaxing the local inequality constraints with an $L_2$-penalty.
+
+In \cite{Necoara2009a}, it was proved that adding self-concordant barrier terms to the Lagrange function of a generic convex problem render a self-concordant dual function. Hence, in the context of interior-point methods, it is possible to use the Newton method to efficiently trace the central path. This result was used in \cite{Quoc2013}, where a method based on inexact solutions of the local subproblems was proposed. Moreover, in \cite{Klintberg2014}, a primal-dual interior-point method was proposed, which supports linear predictors and inexact solutions and showed a fast and consistent practical convergence.
+
+Methods using second-order information offer a fast convergence in terms of iterations. However, this comes to the cost of factorizing the Hessian of the dual function at each iteration. For a high-dimensional dual space, this can be a limitation for second-order methods.
+
+In this paper, we aim at substantially lower the complexity of factorizing the dual Hessian by exploiting its inherent quasi-structure originating from certain MPC schemes. The quasi structure arise when distributed systems, with non-delayed interactions between subsystems, are controlled with MPC. As an illustrative example, the structure will be analyzed in the context of the method described in \cite{Necoara2009a}. It should however be understood that the dual Hessian of the methods described in \cite{Quoc2013} and \cite{Klintberg2014} take the same form.
+
+\subsection{Contributions} Bla bla bla
+
+\subsection{Notations} We note the space of symmetric positive (semi) definite matrices by ($\mathbb{S}_{+}^n$) $\mathbb{S}_{++}^n \subset \mathbb{R}^{n \times n}$.
+
+%In \cite{Wei2013}, a distributed Newton method is proposed to maximize network utilization.
 
 \section{Prelimenaries}
 
-\subsection{Motivation: Distributed MPC with non-delayed couplings}
-We consider $M$ discrete time linear systems given by:
-\begin{subequations}
-\begin{align}
-x_{1,i+1} & = A_{1,i} x_{1,i} + B_{1,i} u_{1,i}, \quad i = 0,\dots,N \\
-& \vdots \\
-x_{M,i+1} & = A_{M,i} x_{M,i} + B_{M,i} u_{M,i}, \quad i = 0,\dots,N 
-\end{align}
-\end{subequations}
-where $x_{k,i} \in \mathbb{R}^{p_{k}}$ and $u_{k,i} \in \mathbb{R}^{m_{k}}$ represents the state and input of system $k$ at time instance $i$. We also assume state and input constraints:
-\begin{subequations}
-\begin{align}
-x_{k,i} \in \mathcal{X}_{k,i} \subseteq \mathbb{R}^{p_{k}} \\
-u_{k,i} \in \mathcal{U}_{k,i} \subseteq \mathbb{R}^{m_{k}}
-\end{align}
-\end{subequations}
-Moreover, we assume non-delayed couplings between the systems:
-\begin{equation}
-h_i(x_{1,i}, u_{1,i}, \dots, x_{M,i}, u_{M,i}) = 0, \quad i = 0,\dots,N
+\subsection{Problem formulation}
+In this section, we present the considered class of distributed Quadratic Programs (QPs). Moreover, we show how problems belonging to this class arise when MPC is used to control several linear systems interacting via non-delayed couplings.
+
+Let us consider $M$ discrete time, possibly time varying, linear systems:
+\begin{equation} \label{e:SystemDynamics}
+x_{k,i+1} = A_{k,i} x_{k,i} + B_{k,i} u_{k,i}, \quad k = 1, \dots, M
 \end{equation}
-Observe that non-delayed couplings implies that states and inputs for a subsystem at time $i$ can only have a direct impact on states and inputs of another subsystem at time $i$. Note that this can always be fulfilled by introducing extra states to handle the delays locally even when coupling delays are present in the original formulation.
-
-Accordingly, we can state the MPC problem over the horizon $N$ as:
-\begin{subequations}
+where $x_{k,i} \in \mathbb{R}^{p_{k}}$ and $u_{k,i} \in \mathbb{R}^{m_{k}}$ represents the state and input of system $k$ at time instance $i$. Moreover, each system are subject to hard state and input constraints:
+\begin{subequations} \label{e:StateInputConstraints}
 \begin{align}
-\min_{x_{k,i}, u_{k,i}} & \quad \sum_{k=1}^{M} \left( \sum_{i=0}^{N-1} \mathnormal{l}(x_{k,i}, u_{k,i}) + \mathnormal{l}_f(x_{k,N}) \right) \label{e:MPCobjective} \\
-\text{s.t.} & \quad x_{k,i+1} = A_{k,i}x_{k,i} + B_{k,i}u_{k,i} \\
-& \quad h_i(x_{1,i}, u_{1,i}, \dots, x_{M,i}, u_{M,i}) = 0 \label{e:MPCcouplings} \\
-& \quad x_{k,i} \in \mathcal{X}_{k,i}, \quad u_{k,i} \in \mathcal{U}_{k,i} \label{e:MPCconstrains}
+x_{k,i} \in \mathcal{X}_{k,i} \subseteq \mathbb{R}^{p_{k}}, \quad k = 1, \dots, M \\
+u_{k,i} \in \mathcal{U}_{k,i} \subseteq \mathbb{R}^{m_{k}}, \quad k = 1, \dots, M
 \end{align}
 \end{subequations}
+Let us now also assume that the systems interact with static, non-delayed couplings:
+\begin{equation} \label{e:MPCcouplings}
+h_i(x_{1,i}, u_{1,i}, \dots, x_{M,i}, u_{M,i}) = 0
+\end{equation}
+Observe that with non-delayed couplings, we refer to interactions where states and inputs for a subsystem at time $i$ can only have a direct impact on states and inputs of another subsystem at time $i$. The interactions between the systems can accordingly not include dynamical relationships or time-delays. However, it should be understood that this can always be fulfilled by introducing extra states to handle the delays locally, even when delayed couplings are present in the original formulation.
 
-Furthermore, let us assume that the non-delayed couplings (\ref{e:MPCcouplings}) are affine, constraints (\ref{e:MPCconstrains}) are convex polytopes and that the objective function (\ref{e:MPCobjective}) is quadratic. We introduce the following notation: $z_{k,i} = [x_{k,i}^T \quad u_{k,i}^T]^T \in \mathbb{R}^{n_{k}}$, representing the optimization variables. The MPC problem can then be stated as:
+Furthermore, let us assume that the the constraints (\ref{e:StateInputConstraints}) are convex polytopes, and that the non-delayed couplings (\ref{e:MPCcouplings}) are affine. Moreover, we introduce the notation: $z_{k,i} = [x_{k,i}^T \quad u_{k,i}^T]^T \in \mathbb{R}^{n_{k}}$, representing the optimization variables. Using a quadratic objective function, the \emph{finite-time optimal control problem} over the horizon $N$, can then be stated as:
 \begin{subequations}
 \label{e:problem}
 \begin{align}
 \min_z & \quad \sum_{k=1}^{M} \sum_{i=0}^N \frac{1}{2}z_{k,i}^TH_{k,i}z_{k,i} + c_{k,i}^Tz_{k,i} \label{e:1} \\
 \text{s.t.} & \quad \sum_{k=1}^{M} F_{k,i}z_{k,i} = e_i \label{e:CoupConstControl} \\
-& C_{k,i}z_{k,i} + D_{k,i+1}z_{k,i+1} = d_{k,i}  \label{e:dynamics} \\
+& C_{k,i}z_{k,i} + D_{k,i+1}z_{k,i+1} = d_{k,i} \label{e:dynamics} \\
 & G_{k,i}z_{k,i} \leq f_{k,i}
 \end{align}
 \end{subequations}
-where $H_{k,i} \in \mathbb{S}_{++}^{n_{k} \times n_{k}}$, $C_{k,i} \in \mathbb{R}^{l_{k} \times n_{k}}$, $D_{k,i+1} \in \mathbb{R}^{l_{k} \times n_{k}}$ and $d_{k,i} \in \mathbb{R}^{l_{k}}$ form the dynamics, $F_{k,i} \in \mathbb{R}^{r_{i} \times n_{k}}$ and $e_i \in \mathbb{R}^{r_i}$ yield the coupling constraints, $G_{k,i} \in \mathbb{R}^{t_{k} \times n_{k}}$ and $f_{k,i} \in \mathbb{R}^{t_{k}}$ form the local constraints.
+where $H_{k,i} \in \mathbb{S}_{++}^{n_{k}}$ and $c_{k,i} \in \mathbb{R}^{n_k}$, the dynamics (\ref{e:SystemDynamics}) are described by $C_{k,i} \in \mathbb{R}^{l_{k} \times n_{k}}$, $D_{k,i+1} \in \mathbb{R}^{l_{k} \times n_{k}}$ and $d_{k,i} \in \mathbb{R}^{l_{k}}$, $F_{k,i} \in \mathbb{R}^{r_{i} \times n_{k}}$ and $e_i \in \mathbb{R}^{r_i}$ yield the non-delayed coupling constraints (\ref{e:MPCcouplings}), $G_{k,i} \in \mathbb{R}^{t_{k} \times n_{k}}$ and $f_{k,i} \in \mathbb{R}^{t_{k}}$ form the local state and input constraints (\ref{e:StateInputConstraints}).
 
-Additionaly, to avoid an unnecessary heavy notation at places where we are only dealing with decomposition in space, we introduce the following augmented notations: $z_k = [z_{k,0}^T \dots, z_{k,N}^T]^T \in \mathbb{R}^{(N+1)n_k}$, which represents the collection of states and inputs of system $k$ over the horizon $N$. The MPC problem (\ref{e:problem}) can then be expressed as:
+Additionaly, to avoid unnecessarily heavy notation, we introduce the following augmented notations: $z_k = [z_{k,0}^T \dots, z_{k,N}^T]^T \in \mathbb{R}^{(N+1)n_k}$, which represents the collection of states and inputs of system $k$ over the horizon $N$. The MPC problem (\ref{e:problem}) can then be expressed as:
 \begin{subequations}
 \label{e:problem1}
 \begin{align}
@@ -181,13 +187,20 @@ Additionaly, to avoid an unnecessary heavy notation at places where we are only 
 & G_k z_k \leq f_k \label{e:ineqConst}
 \end{align}
 \end{subequations}
-where $H_{k} \in \mathbb{S}_{++}^{(N+1)n_{k} \times (N+1)n_{k}}$, $C_{k} \in \mathbb{R}^{N l_{k} \times (N+1)n_{k}}$ and $d_{k} \in \mathbb{R}^{N l_{k}}$, $F_{k} \in \mathbb{R}^{(N+1) r \times (N+1) n_{k}}$ and $e \in \mathbb{R}^{(N+1)r}$, $G_{k} \in \mathbb{R}^{(N+1) t_{k} \times (N+1) n_{k}}$ and $f_{k} \in \mathbb{R}^{(N+1) t_{k}}$ and the matrices are accordingly given by:
+where $H_{k} \in \mathbb{S}_{++}^{(N+1)n_{k} \times (N+1)n_{k}}$, $C_{k} \in \mathbb{R}^{N l_{k} \times (N+1)n_{k}}$ and $d_{k} \in \mathbb{R}^{N l_{k}}$, $F_{k} \in \mathbb{R}^{(N+1) r \times (N+1) n_{k}}$ and $e \in \mathbb{R}^{(N+1)r}$, $G_{k} \in \mathbb{R}^{(N+1) t_{k} \times (N+1) n_{k}}$ and $f_{k} \in \mathbb{R}^{(N+1) t_{k}}$.
+
+Observe that the matrices in (\ref{e:problem1}) possess banded structures given by:
 \begin{subequations}
 \begin{align*}
 & H_k = \left[ \begin{array}{ccc}
 H_{k,0} & & \\
  & \ddots & \\
  & & H_{k,N}
+\end{array} \right], \\
+& F_k = \left[ \begin{array}{ccc}
+F_{k,0} & & \\
+ & \ddots & \\
+ & & F_{k,N}
 \end{array} \right], \\
 & C_k = \left[ \begin{array}{ccccc} 
 C_{k,0} & D_{k,1} &  &   &  \\
@@ -202,30 +215,32 @@ A_{k,0} & & \\
 \end{array} \right].
 \end{align*}
 \end{subequations}
+The banded structures will be key elements for our results.
 
 \subsection{Dual decomposition with second-order information} \label{s:DualDecomposition}
+In this section, we consider dual decomposition. The aim is to present a constraint relaxation, first described in \cite{Necoara2009a}, in order to make the dual function self-concordant. Self-concordance is an important property for constructing polynomial time interior-point methods \cite{Nesterov1994}, and is hence a desirable feature since Newton steps in the dual space are considered. Moreover, since constructing the Hessian is crucial to compute a Newton step, we will detail how the dual Hessian can be computed.
 
 We introduce the dual variables $\lambda \in \mathbb{R}^{(N+1) r}$ corresponding to the coupling constraints (\ref{e:CoupConst}) and define the Lagrange function as:
 \begin{equation}
 \mathcal{L}(z,\lambda) =  \sum_{k=1}^{M} ( \frac{1}{2}z_k^TH_kz_k + c_k^Tz_k ) + \lambda^T ( \sum_{k=1}^{M} F_k z_k - e )
 \end{equation}
-Note that $\mathcal{L}(z,\lambda)$ is separable in $z$, i.e.
+We observe that $\mathcal{L}(z,\lambda)$ is separable in $z$, i.e.
 \begin{equation}
-\mathcal{L}(z,\lambda) = \sum_{k=1}^{M} \mathcal{L}_k (z_k,\lambda)
+\mathcal{L}(z,\lambda) = \sum_{k=1}^{M} \mathcal{L}_k (z_k,\lambda),
 \end{equation}
 with
 \begin{equation}
-\mathcal{L}_k(z_k,\lambda) = \frac{1}{2}z_k^TH_k z_k + c_k^T z_k + \lambda^T(F_k z_k - \frac{1}{M} e)
+\mathcal{L}_k(z_k,\lambda) = \frac{1}{2}z_k^TH_k z_k + c_k^T z_k + \lambda^T(F_k z_k - \frac{1}{M} e),
 \end{equation}
-The dual function $d(\lambda) = -\min_{z \in \mathcal{Z}} \mathcal{L}(z,\lambda)$ can thus be evaluated in parallel as:
+such that the dual function $d(\lambda) = -\min_{z \in \mathcal{Z}} \mathcal{L}(z,\lambda)$ can be evaluated in parallel as:
 \begin{equation}
 \label{e:dualfunction}
 d(\lambda) = -\sum_{k=1}^M \min_{z_k \in \mathcal{Z}_k} \mathcal{L}_k(z_k,\lambda)
 \end{equation}
 
-Since (\ref{e:problem1}) is strictly convex, $d(\lambda)$ is convex and continuously differentiable, but not twice differentiable. However, the Hessian of $d(\lambda)$ is a piecewise constant matrix and change with the active-set of (\ref{e:problem}) \cite{Kozma2014a}.
+Since (\ref{e:problem1}) is strictly convex, $d(\lambda)$ is convex and continuously differentiable, but not twice differentiable \cite{Kozma2014a}. However, the Hessian of $d(\lambda)$ is a constant matrix over any fixed active-set of (\ref{e:problem}) \cite{Kozma2014a}.
 
-The non-smoothness implies that $d(\lambda)$ is not self-concordant and the solution to the dual problem is hence not easily tracked with Newton's method. However, if we relax the inequality constraints (\ref{e:ineqConst}) with a self-concordant log-barrier, according to:
+As a result, $d(\lambda)$ is not self-concordant and the solution to the dual problem is not easily tracked with the Newton method. However, if the inequality constraints (\ref{e:ineqConst}) are relaxed with a self-concordant log-barrier, according to:
 \begin{subequations}
 \label{e:relaxedproblem}
 \begin{align}
@@ -235,9 +250,9 @@ The non-smoothness implies that $d(\lambda)$ is not self-concordant and the solu
 & \quad G_k z_k + s_k = f_k
 \end{align}
 \end{subequations}
-where $\tau > 0$ will be referred to as the \emph{barrier parameter}, the resulting \emph{relaxed dual function} $d(\lambda, \tau)$ is self-concordant \cite{Necoara2009a}. This opens for the possibility of solving a sequence of dual problems $\left\{\min_\lambda d(\lambda, \tau) \right\}_{\tau \rightarrow 0}$ where each problem is self-concordant and therefore easily solved with Newton's method.
+where $\tau > 0$ will be referred to as the \emph{barrier parameter}, the resulting \emph{relaxed dual function} $d(\lambda, \tau)$ is self-concordant \cite{Necoara2009a}. As a result, a sequence of dual problems $\left\{\min_\lambda d(\lambda, \tau) \right\}_{\tau \rightarrow 0}$ can be solved, where each problem is self-concordant and therefore easily solved with the Newton method.
 
-In contrast to methods based on the \emph{augmented Lagrangian} \cite{Kozma2013}, the separability of the dual function is preserved, and the relaxed dual function can be computed in parallel using:
+In contrast to smoothing techniques based on the \emph{augmented Lagrangian} \cite{Kozma2013}, the separability of the dual function is preserved, and the relaxed dual function can be computed in parallel using:
 \begin{equation}
 \label{e:relaxeddualfunction}
 d(\lambda, \tau) = -\sum_{k=1}^M \min_{z_k \in \mathcal{Z}_k} \left( \mathcal{L}_k(z_k, \lambda) - \tau \sum_{i=1}^{m_k} \log([s_k]_i) \right)
@@ -256,22 +271,24 @@ Observe that evaluating (\ref{e:relaxeddualfunction}) involves solving $M$ indep
 Strict convexity of (\ref{e:relaxedproblem}) implies that the gradient of $d(\lambda, \tau)$ with respect to $\lambda$ is given by the residual of the coupling constraints \cite{Bertsekas1989}, i.e.
 \begin{equation}
 \label{e:dualgradient}
-\nabla d(\lambda, \tau) = -\sum_{k=1}^N F_k z_k^*(\lambda, \tau) + e
+\nabla d(\lambda, \tau) = -\sum_{k=1}^M F_k z_k^*(\lambda, \tau) + e
 \end{equation}
 where $z_k^*(\lambda, \tau)$ is the solution to (\ref{e:localproblem}).
 The dual Hessian is then given by:
 \begin{equation}
 \label{e:dualhessian}
-\nabla^2 d(\lambda, \tau) = -\sum_{k=1}^N F_k \frac{\partial z_k^*(\lambda, \tau)}{\partial \lambda}
+\nabla^2 d(\lambda, \tau) = -\sum_{k=1}^M F_k \frac{\partial z_k^*(\lambda, \tau)}{\partial \lambda}
 \end{equation}
 
-A Newton direction $\Delta \lambda$ in the dual space can then be obtained as a solution to the Newton system:
+Recall that in order to find the solution $\lambda^*(\tau)$ to the dual problem $\min_\lambda d(\lambda, \tau)$, $\lambda$ is updated by taking Newton steps $\Delta \lambda$. A Newton step in the dual space can be obtained as a solution to the Newton system:
 \begin{equation}
 \label{e:NewtonSystem}
-\nabla^2 d(\lambda, \tau) \Delta \lambda + \nabla_{\lambda} d(\lambda, \tau) = 0
+\nabla^2 d(\lambda, \tau) \Delta \lambda + \nabla d(\lambda, \tau) = 0
 \end{equation}
 
-Moreover, by introducing $y_k = \tau s_k^{-1} \in \mathbb{R}^{t_k (N + 1)}$, the KKT conditions to (\ref{e:localproblem}) are given by:
+Observe that finding the Newton step requires knowledge of the gradient and the Hessian of the dual function $d(\lambda, \tau)$. Note that the dual gradient (\ref{e:dualgradient}) can be easily computed from the solutions $z_k^*(\lambda, \tau)$ to (\ref{e:localproblem}), while the Hessian (\ref{e:dualhessian}) requires the sensitivities $\frac{\partial z_k^*(\lambda, \tau)}{\partial \Lambda}$. In the following, we will describe how $\frac{\partial z_k^*(\lambda, \tau)}{\partial \Lambda}$ can be computed, for a detailed description we refer to \cite{Klintberg2014}.
+
+By introducing $y_k = \tau s_k^{-1} \in \mathbb{R}^{t_k (N + 1)}$, the primal-dual interior point KKT conditions to (\ref{e:localproblem}) can be stated as:
 \begin{subequations} \label{e:KKTconditions}
 \begin{align}
 & 0 = H_k z_k^* + c_k + F_k^T \lambda + C_k^T \mu_k^* + G_k^T y_k^* \\
@@ -303,16 +320,14 @@ F_k^T \\
 0
 \end{array} \right]
 \end{equation}
-from which solution, $\frac{\partial z_k^*}{\partial \lambda}$, the dual Hessian can be formed according to (\ref{e:dualhessian}).
-
+from which solution, $\frac{\partial z_k^*(\lambda, \tau)}{\partial \lambda}$, the dual Hessian can be formed according to (\ref{e:dualhessian}).
 
 \section{Quasi-structure of the dual Hessian} \label{S:TheoreticalDecay}
 
-\subsection{Motivational example}
+\subsection{Quasi-banded} \label{s:QuasiBanded}
+In Section \ref{s:DualDecomposition}, we presented a way of computing the dual Hessian. In this section, we will detail its properties by forming an explicit expression and characterizing a quasi-banded structure. The quasi-banded structure is important since it implies that the dual Hessian can be approximated by a banded matrix, which can be used to form a quasi-Newton method.
 
-\subsection{Quasi-banded}
-In Section \ref{s:DualDecomposition}, we presented a way of computing the dual Hessian. In this section, we will detail its properties by forming an explicit expression and characterizing a quasi-banded structure.
-
+The analysis of the structure will be based on the explicit expression of the dual Hessian in the following minor propsition:
 \begin{proposition}
 The Hessian of the dual function $d(\lambda, \tau)$ is given by:
 \begin{equation}
@@ -352,7 +367,7 @@ where we, for the sake of brevity, have omitted the arguments and used $\Phi_k =
 \qed
 \end{proof}
 \begin{remark}
-Observe, that the relaxed dual Hessian of a problem distributed in space according to (\ref{e:problem1}) can always be written on the form (\ref{e:dualhessian2}), regardless of the additional structure in time described by (\ref{e:problem}). However, by considering the structure in time, it can be observed from (\ref{e:Phi}) that $\Phi_k$ is block diagonal with blocks $\Phi_{k,i} = H_{k,i} + G_{i,k}^T S_{k,i}^{-1} Y_{k,i} G_{k,i}$, and as a consequence, $\Lambda_k$ has a block tridiagonal structure given by:
+Observe, that the relaxed dual Hessian of a problem distributed in space according to (\ref{e:problem1}) can always be written in the form (\ref{e:dualhessian2}), regardless of the additional structure in time described by (\ref{e:problem}). However, by considering the structure in time, it can be observed from (\ref{e:Phi}) that $\Phi_k$ is block diagonal with blocks $\Phi_{k,i} = H_{k,i} + G_{i,k}^T S_{k,i}^{-1} Y_{k,i} G_{k,i}$, and as a consequence, $\Lambda_k$ has a block tridiagonal structure given by:
 \begin{equation}
 \Lambda_k = \left[ \begin{array}{cccc} 
 \Lambda_{11} &  \Lambda_{12} &   &  \\
@@ -371,7 +386,7 @@ where
 \end{subequations}
 \end{remark}
 
-Note that all matrices in (\ref{e:dualhessian2}) are banded except $\Lambda_k^{-1}$ which in general is dense, and consequently, makes also the dual Hessian dense. However, $\nabla^2 d(\lambda,\tau)$ possess a quasi-banded structure, which will be characterized in the following. In the analysis we consider two assumptions. First, we assume boundedness of the problem data:
+Note that all matrices in (\ref{e:dualhessian2}) are banded except $\Lambda_k^{-1}$ which in general is dense, and consequently, makes also the dual Hessian dense. However, inverses of sparse matrices typically contain many elements that are small in magnitude \cite{Benzi2002}. In the following, we will show that $\Lambda_k^{-1}$ possess a decaying property which will translate to a \emph{quasi-banded structure} in $\nabla^2 d(\lambda,\tau)$. In the analysis we consider two assumptions. First, we assume boundedness of the problem data:
 \begin{assumption} \label{a:BoundedData}
 The row and column absolute sums of Jacobians of equality constraints (i.e. (\ref{e:CoupConst}) and (\ref{e:3})) are bounded. Hence:
 \begin{enumerate}
@@ -381,9 +396,7 @@ The row and column absolute sums of Jacobians of equality constraints (i.e. (\re
 \end{enumerate}
 where $\bullet$ represent $\infty$ and $1$.
 \end{assumption}
-\begin{remark}
-It should be observed that Assumption \ref{a:BoundedData} is not by any means restrictive, since any solver would struggle with a problem where it is not fulfilled \cite{}. 
-\end{remark}
+For the sake of simplicity, a single constant $\gamma$ is chosen to bound all problem data. Moreover, it should be observed that Assumption \ref{a:BoundedData} is not by any means restrictive, since any solver would struggle with a problem where it is not fulfilled \cite{}.
 Furthermore, we assume boundedness of $\Phi_k^{-1}$:
 \begin{assumption} \label{a:BoundedConditioning}
 The row and column absolute sums of $\Phi_k^{-1}$ are bounded. Hence:
@@ -396,7 +409,7 @@ where $\bullet$ represents $\infty$ and $1$.
 As a result of $\Phi_k$ being symmetric, $\| \Phi_{k,i}^{-1} \|_\infty = \| \Phi_{k,i}^{-1} \|_1$.
 \end{remark}
 \begin{remark}
-Possible problems with interior-point methods are related to numerical difficulties due to ill-conditioning \cite{WrightM1998}. Indeed, since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations when $\tau$ is small. However, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ are lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not restrictive to assume boundedness of $\Phi_k^{-1}$.
+A possible difficulty with interior-point methods stems from numerical difficulties due to ill-conditioning of the normal equations \cite{WrightM1998}. Indeed, since elements in $S_k^{-1}Y_k$ can be close to zero in late iterations, i.e. when $\tau$ is small. However, since we assume that (\ref{e:problem}) is strongly convex, the eigenvalues of $\Phi_k$ are lower bounded by the smallest eigenvalue of $H_k$, even when $S_k^{-1}Y_k$ is singular. According to this reasoning it is not restrictive to assume boundedness of $\Phi_k^{-1}$.
 \end{remark}
 
 Let us start by characterizing the structure of $\Lambda_k^{-1}$. Indeed, inverses of sparse matrices are in general dense, but they typically contain many elements that are small in magnitude \cite{Benzi2002}. Since $\Lambda_k$ is banded, symmetric and positive definite, we will use the following classical result:
@@ -414,7 +427,7 @@ A proof is given in \cite{Demko1986}. \qed
 The entries in $A^{-1}$ are bounded by an exponentially decaying function along each row or column. However, the bound depends on the condition number and the bandwidth of the matrix. Matrices with a high condition number and/or a high bandwidth can therefore result in a large $K$ and $\omega \approx 1$, leading to a slow decay. A low condition number and a small band results in a rapid decay.
 \end{remark}
 \begin{remark}
-Observe that due to the block tridiagonal structure of $\Lambda_k$, it is $3 l_k$-banded, i.e. $m = 3 l_k$ for $\Lambda_k$.
+Observe that due to its block tridiagonal structure, $\Lambda_k$ is $3 l_k$-banded, i.e. $m = 3 l_k$ for $\Lambda_k$.
 \end{remark}
 Accordingly, if we introduce the notation
 \begin{equation}
@@ -443,14 +456,14 @@ where $\max \left| [ T_{ij} ] \right| $ refers to the maximum absolute value of 
 \begin{equation} \label{e:decayofLambda2}
 \| T_{i,j} \|_\bullet \leq l_k \max \{ \sigma_{min}(\Lambda_k)^{-1}, 1 +  \sqrt{\kappa(\Lambda_k)} \} \left( \frac{ \sqrt{\kappa(\Lambda_k)} - 1}{ \sqrt{\kappa(\Lambda_k)} + 1} \right)^{\frac{1}{3l_k}((i - j)l_k + 1)}
 \end{equation}
-where $\bullet$ represents $\infty$ and $1$. Observe that (\ref{e:decayofLambda2}) is the same as (\ref{e:decayofLambda}).
+where $\bullet$ represents $\infty$ and $1$. Observe that (\ref{e:decayofLambda2}) is identical to (\ref{e:decayofLambda}).
 \qed
 \end{proof}
 \begin{remark}
-The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in (\ref{e:decayofLambda}) depends heavily on the conditioning of $\Lambda_k$, which for interior point methods can in general be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
+The constants $K_{\Lambda_k}$ and $\omega_{\Lambda_k}$ in (\ref{e:decayofLambda}) depend heavily on the conditioning of $\Lambda_k$, which for interior point methods can in general be very high for small values of $\tau$. Our experience is however that this is not a major issue in practice, which is also supported by commercial interior-point implementations \cite{WrightM1998} \cite{Domahidi2012}. Moreover, it should be understood that strong convexity of (\ref{e:problem}), should improve the worst case conditioning of $\Phi_k$ and hence also of $\Lambda_k$.
 \end{remark}
 
-We have concluded that $\Lambda_k^{-1}$ is decaying exponentially towards its off-diagonal corners and that $C_k$ is block bi-banded. This suggests that also $C_k^T \Lambda_k^{-1} C_k$, which enters in the expression of $\nabla^2 d(\lambda, \tau)$, should decay towards the off-diagonal corners. Let us introduce the notation:
+We have established that $\Lambda_k^{-1}$ is decaying exponentially towards its off-diagonal corners. Moreover, since $C_k$ is block bi-banded, we will see next that also $C_k^T \Lambda_k^{-1} C_k$, which enters in the expression of $\nabla^2 d(\lambda, \tau)$, decays towards the off-diagonal corners. Let us introduce the notation:
 \begin{equation}
 C_k^T \Lambda_k^{-1} C_k = \left[ \begin{array}{cccc}
 V_{11} & V_{21}^T & \hdots & V_{N+1,1}^T \\
@@ -512,20 +525,27 @@ The off-diagonal blocks (i.e. $W_{i,j}$ where $i - j > 0$) of $\nabla^2 d(\lambd
 where $\bullet$ represents $\infty$ and $1$.
 \end{proposition}
 \begin{proof}
-Recall that the dual Hessian is given by (\ref{e:dualhessian2}). Moreover, observe that the terms $F_k \Phi_k^{-1} F_k^T$ are block-diagonal and does therefore not contribute to the off-diagonal blocks in $\nabla^2 d(\lambda, \tau)$. Therefore, for $i - j > 0$:
+Recall that the dual Hessian is given by:
+\begin{equation} \label{e:dualhessian3}
+\nabla^2 d(\lambda, \tau) = \sum_{k=1}^M F_k (\Phi_k^{-1} - \Phi_k^{-1} C_k^T \Lambda_k^{-1} C_k \Phi_k^{-1}) F_k^T
+\end{equation}
+The matrices $F_k \Phi_k^{-1} F_k^T$ are block-diagonal and do not contribute to the off-diagonal blocks in $\nabla^2 d(\lambda, \tau)$. Therefore using (\ref{e:HessianBlocks}) and (\ref{e:dualhessian3}), for $i - j > 0$:
 \begin{equation}
 \| W_{i,j} \|_\bullet = \left\| \sum_{k=1}^M F_{k,i} \Phi_{k,i}^{-1} V_{i,j} \Phi_{k,j}^{-1} F_{k,j} \right\|_\bullet \leq \sum_{k=1}^M \left\| F_{k,i} \Phi_{k,i}^{-1} V_{i,j} \Phi_{k,j}^{-1} F_{k,j} \right\|_\bullet
 \end{equation}
-where $\bullet$ represents $\infty$ and $1$. Moreover, by using Assumption \ref{a:BoundedData}, Assumption \ref{a:BoundedConditioning} and Proposition \ref{p:intermediateDecay}, we can establish:
+where $\bullet$ represents $\infty$ and $1$. Moreover, by using Cauchy-Schwarz inequality, Assumption \ref{a:BoundedData}, \ref{a:BoundedConditioning} and Proposition \ref{p:intermediateDecay}, it can be verified that:
 \begin{equation}
 \| W_{i,j} \|_\bullet \leq \sum_{k=1}^M \gamma^2 \gamma_{\Phi_k^{-1}}^2 \left\| V_{i,j} \right\|_\bullet \leq \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{i-j}
 \end{equation}
 \qed
 \end{proof}
-Proposition \ref{p:DecayHessian} concludes the characterization of the quasi-banded structure of $\nabla^2 d(\lambda,\tau)$. The structure opens for the possibility of using only a diagonal band of the dual Hessian in (\ref{e:NewtonSystem}), to find an approximate Newton step.
+Proposition \ref{p:DecayHessian} concludes the characterization of the quasi-banded structure of $\nabla^2 d(\lambda,\tau)$. 
 
+\subsection{A banded approximation of the dual Hessian}
 
-Let $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ represent the diagonal $\mathcal{M}$-block band of (\ref{e:HessianBlocks}), which in the following will be referred to as the \emph{clipped dual Hessian}. Moreover, recall Gershgorin's circle theorem:
+In Section \ref{s:QuasiBanded}, we established that the dual Hessian decays exponentially towards its off-diagonal corners. This suggests that a banded matrix can be used to form a good approximation of the dual Hessian, and accordingly be a basis for a quasi-Newton method. In this section, we will approximate the dual Hessian with a diagonal band of itself, and characterize the error in the approximation.
+
+In the following, $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ represents the diagonal $\mathcal{M}$-block band of (\ref{e:HessianBlocks}), which will be referred to as the \emph{clipped dual Hessian}. We recall next Gershgorin's circle theorem, which will be instrumental in the following development:
 \begin{theorem} \label{l:Gerschgorin}
 For $A \in \mathbb{R}^{n \times n}$ with elements $a_{ij}$, let $R_i = \sum_{j \neq i} | a_{ij} |$ be the sum of the absolute values of the non-diagonal entries in the row $i$. Let $D(a_{ii},R_i)$ be the closed disc centered in $a_{ii}$ with radius $R_i$, then every eigenvalue of $A$ lies within at least one of the discs $D(a_{ii}, R_i)$.
 \end{theorem}
@@ -533,7 +553,7 @@ For $A \in \mathbb{R}^{n \times n}$ with elements $a_{ij}$, let $R_i = \sum_{j \
 A proof is given in \cite{HornR2013}.
 \qed
 \end{proof}
-We can now establish a bound on the euclidean distance between the dual Hessian and its clipped counterpart:
+Using Gershgorin's theorem, we can establish a bound on the euclidean distance between the dual Hessian and its clipped counterpart:
 \begin{lemma} \label{l:EuclidianDistance}
 The following bound holds:
 \begin{equation} \label{e:EuclidianDistance}
@@ -543,52 +563,51 @@ where $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k} =  (2 + \o
 \end{lemma}
 \begin{proof}
 Note that $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ is symmetric, which implies that:
-\begin{equation}
+\begin{equation} \label{e:largestEigenvalue}
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 = | \lambda_{\max} ( \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) ) |
 \end{equation}
-where $\lambda_{\max}$ represents the largest eigenvalue. Let us use Gershgorin's circle theorem to bound the largest eigenvalue. Since, the diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ are zero, all Gershgorin discs are centered in the origin. Since the maximum absolute row sum is equal to the largest Gershgorin radius, this implies that:
-\begin{equation}
+where $\lambda_{\max}(\bullet)$ represents the largest eigenvalue of $\bullet$. We then us use Gershgorin's circle theorem to bound the magnitude of the largest eigenvalue in (\ref{e:largestEigenvalue}). Since, the diagonal elements of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ are zero, all Gershgorin discs are centered at the origin. Since the maximum absolute row sum is equal to the largest Gershgorin radius, the following holds:
+\begin{equation} \label{e:largestEigenvalue2}
 | \lambda_{\max} ( \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) ) | \leq \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_{\infty}
 \end{equation}
 
-Observe that each block row in $ \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ has not more than $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks. Moreover, according to (\ref{e:DecayHessian}), the blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound on the maximum absolute row sum are located next to the diagonal $\mathcal{M}$-block band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. This means that:
+Observe that each block row in $ \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ has not more than $N -\frac{\mathcal{M} - 1}{2}$ nonzero blocks. Moreover, according to (\ref{e:DecayHessian}), the blocks $W_{i,j}$ in $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau)$ with the largest bound on the maximum absolute row sum are located next to the diagonal $\mathcal{M}$-block band of zeros, i.e. where $i - j = \frac{\mathcal{M} - 1}{2} + 1$. Hence, by using the width of the band and (\ref{e:DecayHessian}), we can establish that:
 \begin{equation} \label{e:BoundGershgorinRadius}
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_{\infty} \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
-Accordingly, we can establish:
+Accordingly, by using (\ref{e:largestEigenvalue}), (\ref{e:largestEigenvalue2}) and (\ref{e:BoundGershgorinRadius}) ,we can establish that:
 \begin{equation} 
 \| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda, \tau) \|_2 \leq \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \bar{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2} + 1}
 \end{equation}
-where (\ref{e:EuclidianDistance}) is obtained by introducing $\tilde{K}_{\Lambda_k} = \bar{K}_{\Lambda_k} \omega_{\Lambda_k}$.
+which is identical to (\ref{e:EuclidianDistance}).
 \qed
 \end{proof}
 
-It is well known that the use of an inexact Hessian will degrade the convergence of Newton's method to a linear rate provided that the inexact Hessian has full rank \cite{Nocedal2006}. Recall the following corollary that follows from Weyl's inequality \cite{HornR2013}:
-\begin{corollary}
+It is well known that the use of an inexact Hessian will degrade the convergence of the Newton method to a linear rate provided that the inexact Hessian has full rank \cite{Nocedal2006}. In the following, we will establish a criterion that guarantees a positive definite clipped dual Hessian. The criterion is based on the following proposition that follows from Weyl's inequality \cite{HornR2013}:
+\begin{proposition} \label{p:Weyl}
 Let $A, B \in \mathbb{S}^{n \times n}$, then
 \begin{equation} \label{e:minEigenvalueLemma}
 \lambda_{\min} (A) + \lambda_{\min} (B) \leq \lambda_{\min} (A + B)
 \end{equation} 
 where $\lambda_{\min}$ represents the minimum eigenvalue.
-\end{corollary}
+\end{proposition}
 \begin{proof}
 A proof is given in \cite{HornR2013}.
 \end{proof}
-We can now establish a criterion for non-singularity of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$:
+We can now establish a criterion for the non-singularity of $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$:
 \begin{lemma} \label{l:nonsingularClippedHessian}
 If $\mathcal{M}$ is chosen such that:
 \begin{equation} \label{e:nonsingularClippedHessian}
-\lambda_{\min}( \nabla^2 d(\lambda, \tau) ) > \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
+\left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}} < \lambda_{\min}( \nabla^2 d(\lambda, \tau) )
 \end{equation}
-
-$\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
+then $\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}$ is positive definite.
 \end{lemma}
 \begin{proof}
 Observe that
 \begin{equation}
 \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} = \nabla^2 d(\lambda, \tau) + \left( \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda,\tau) \right)
 \end{equation}
-From (\ref{e:minEigenvalueLemma}), we can realize that:
+Proposition \ref{p:Weyl} entails that:
 \begin{equation}
 \lambda_{\min} (\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}) \geq \lambda_{\min}(\nabla^2 d(\lambda,\tau)) + \lambda_{min} (\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda,\tau))
 \end{equation}
@@ -605,39 +624,43 @@ Using (\ref{e:nonsingular1}) and (\ref{e:nonsingular2}) gives (\ref{e:nonsingula
 \qed
 \end{proof}
 \begin{remark}
-It should be noted that $\lambda_{\min}(\nabla^2 d(\lambda,\tau)) > 0, \; \forall \lambda$ \cite{Klintberg2014}.
+It should be noted that $\lambda_{\min}(\nabla^2 d(\lambda,\tau)) > 0, \; \forall \lambda$ \cite{Klintberg2014}, such that (\ref{e:nonsingularClippedHessian}) can always be satisfied.
 \end{remark}
 \begin{remark}
 Observe that (\ref{e:nonsingularClippedHessian}) is a sufficient and not a necessary condition. According to our experiments, singularity is not a problem in practice, and (\ref{e:nonsingularClippedHessian}) is hence very conservative.
 \end{remark}
 
-\subsection{Selection of bandwidth}
+\subsection{Convergence of the quasi-Newton method}
 
-In the previous section, we have seen that the clipped dual Hessian is positive definite and close, in an euclidean sense, to the exact Hessian provided that the band $\mathcal{M}$ is wide enough. Here, we aim at formalizing criterions for selecting the bandwidth $\mathcal{M}$.
+In the previous section, we have seen that the clipped dual Hessian is positive definite and close, in an euclidean sense, to the exact Hessian provided that the band $\mathcal{M}$ is wide enough. In this section, we will consider issues related to the convergence and complexity of a quasi-Newton method based on the \emph{clipped dual Hessian}.
 
+Let us start by detailing how the clipped dual Hessian affect the convergence of the Newton method:
 \begin{theorem} If the dual function fulfills:
 \begin{equation} \label{e:ConditionHessian}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt } \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
 \end{equation}
 then the following bound holds:
 \begin{equation} \label{e:Convergence}
-\| \nabla d(\lambda^+,\tau) \|_2 \leq \omega_1 \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
+\| \nabla d(\lambda + \Delta \lambda,\tau) \|_2 \leq \omega \| \nabla d(\lambda, \tau) \|_2^2 + f(\mathcal{M}) \| \nabla d(\lambda, \tau) \|_2
 \end{equation}
 where
 \begin{equation}
 f(\mathcal{M}) = \| (\lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}} - \nabla^2 d(\lambda,\tau) ) \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}^{-1} \|_2
 \end{equation}
 \end{theorem}
+\begin{remark}
+We will further discuss assumption (\ref{e:ConditionHessian}) in the next proposition.
+\end{remark}
 \begin{proof}
-Recall that an approximate Newton step computed with the clipped dual Hessian is given by the following linear system:
+An approximate Newton step based on the clipped dual Hessian is given by the following linear system:
 \begin{equation} \label{e:approxNewtonSystem}
 \lfloor \nabla^2 d(\lambda,\tau) \rceil_{\mathcal{M}} \Delta \lambda  + \nabla d(\lambda,\tau) = 0
 \end{equation}
-Moreover, to avoid a heavy notation, we will omit arguments when they are obvious from the context and introduce the the notation $\nabla d^+ = \nabla d(\lambda + \Delta \lambda, \tau)$. We can then express:
+In order to avoid heavy notations, we will omit arguments when they are obvious from the context and introduce the notation $\nabla d^+ = \nabla d(\lambda + \Delta \lambda, \tau)$. We then have:
 \begin{equation}
 \begin{aligned} \label{e:convergence1}
 \| \nabla d^+ \|_2 & = \| \nabla d^+ - \nabla d - \lfloor \nabla^2 d \rceil_{\mathcal{M}} \Delta \lambda \|_2 = \\
-= & \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) \Delta \lambda ) \text{dt} -  \lfloor \nabla_{\lambda\lambda} d \rceil_{\mathcal{M}} \Delta \lambda \right\|_2 = \\
+= & \left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) \Delta \lambda ) \text{dt} -  \lfloor \nabla^2 d \rceil_{\mathcal{M}} \Delta \lambda \right\|_2 = \\
 = & \left\| \left( \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt} + \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathcal{M}}  \right) \Delta \lambda \right\|_2 = \\
 = & \left\| \left( \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{dt} + \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathcal{M}}  \right)  \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \nabla d \right\|_2 
 \end{aligned}
@@ -648,11 +671,11 @@ where we have used (\ref{e:approxNewtonSystem}) and the following result from ca
 \end{equation}
 Consequently, we can bound (\ref{e:convergence1}) according to:
 \begin{equation}
-\| \nabla d^+ \|_2 \leq \omega_1 \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
+\| \nabla d^+ \|_2 \leq \omega \| \nabla d \|_2^2 + f(\mathcal{M}) \left\| \nabla d \right\|_2 
 \end{equation}
 where we have introduced:
 \begin{equation}
-\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega_1 \| \nabla d \|_2
+\left\| \int_0^1 ( \nabla^2 d(\lambda + t \Delta \lambda, \tau) - \nabla^2 d ) \text{ dt} \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2 \leq \omega \| \nabla d \|_2
 \end{equation}
 and
 \begin{equation}
@@ -663,7 +686,7 @@ f(\mathcal{M}) = \left\| \left( \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathca
 \begin{remark}
 Observe the $f(\mathcal{M}) \geq 0$ is a function which value we in principle can choose.
 \end{remark}
-Note that the condition (\ref{e:ConditionHessian}) can be related to Lipschitz continuity of the dual Hessian.
+The condition (\ref{e:ConditionHessian}) can be related to the Lipschitz continuity of the dual Hessian. This is established in the following:
 \begin{proposition}
 Let the dual Hessian be Lipschitz continuous with constant $L$, then:
 \begin{equation}
@@ -688,12 +711,31 @@ Observe that:
 \qed
 \end{proof}
 
-In terms of iterations, the optimal choice would be to use the full dual Hessian and hence make $f(\mathcal{M}) = 0$. However, since a dense factorization is more costly than its banded counterpart, the overall complexity of solving a problem can be lower if a nonzero $f(\mathcal{M})$ is used. As an illustrative example, the complexity of finding a Cholesky factorization of a dense matrix $A \in S_{+}^n$ is $\frac{1}{3}n^3$ flops. On the other hand, if $A$ is $k-$banded (where $k \ll n$), the complexity is reduced to $nk^2$ flops.
+In terms of iterations, the optimal choice would be to use the full dual Hessian and hence make $f(\mathcal{M}) = 0$. However, since a dense factorization is more costly than its banded counterpart, the overall complexity of solving a problem can be lower if a nonzero $f(\mathcal{M})$ is used. As an illustrative example, the complexity of finding a Cholesky factorization of a dense matrix $A \in \mathbb{S}_{+}^n$ is $\frac{1}{3}n^3$ flops. On the other hand, if $A$ is $k-$banded (where $k \ll n$), the complexity is reduced to $nk^2$ flops.
+
+To further specify properties of $f(\mathcal{M})$, we state the following corollary that follows directly from Lemma \ref{l:EuclidianDistance}:
+\begin{corollary}
+The following bound holds:
+\begin{equation}
+f(\mathcal{M}) \leq \left\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}^{-1} \right\|_2 \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
+\end{equation}
+\end{corollary}
+\begin{proof}
+By using Cauchy Schwarz inequality, we have that:
+\begin{equation}
+f(\mathcal{M}) \leq \left\| \nabla^2 d -  \lfloor \nabla^2 d \rceil_{\mathcal{M}} \right\|_2  \left\|  \lfloor \nabla^2 d \rceil_{\mathcal{M}}^{-1} \right\|_2
+\end{equation}
+Moreover, by using (\ref{e:EuclidianDistance}), we can establish that
+\begin{equation}
+f(\mathcal{M}) \leq \left\| \lfloor \nabla^2 d(\lambda, \tau) \rceil_{\mathcal{M}}^{-1} \right\|_2 \left( N -\frac{\mathcal{M} - 1}{2} \right) \sum_{k=1}^M \gamma^4 \gamma_{\Phi_k^{-1}}^2 \tilde{K}_{\Lambda_k} \omega_{\Lambda_k}^{\frac{\mathcal{M} - 1}{2}}
+\end{equation}
+\qed
+\end{proof}
 
 \section{Numerical experiments}
 
 \subsection{An example}
-To investigate the consistency of the off-diagonal decay for a given problem, we look at a randomly generated problem, of the form (\ref{e:problem}), with $M=4$ subproblems each with a horizon $N=30$, $6$ states, $4$ controls, and $4(N+1) = 124$ inequality constraints. Each time instance the subproblems are coupled together with $4$ coupling constraints. Moreover, the elements are generated with an even distribution in the interval $[-1000, 1000]$.
+To investigate the consistency of the off-diagonal decay for a given problem, we look at a randomly generated problem, of the form (\ref{e:problem}), with $M=4$ subproblems each with a horizon $N=30$, $6$ states, $4$ controls, and $4(N+1) = 124$ inequality constraints. At each time instance the subproblems are coupled via $4$ coupling constraints. Moreover, the elements are generated with an even distribution in the interval $[-1000, 1000]$.
 
 The absolute values of the elements in the dual Hessian evaluated at the solution $\lambda^*(\tau)$ for $\tau=1$, are visualized in Figure \ref{f:HessianSpyN30Tau1}. It can be seen that elements with a large magnitude are present along the diagonal, while elements towards the off-diagonal corners are small in absolute value.
 
@@ -715,7 +757,7 @@ The absolute values of the elements in the dual Hessian evaluated at the solutio
 \label{fig:test}
 \end{figure}
 
-Let us investigate the consistency of the decay with respect to $\lambda$. The maximal absolute value of the elements in $\nabla_{\lambda\lambda} d(\lambda, \tau)$ for given distances from its diagonal, are visualized in Figure \ref{f:HessianDecayN30Tau1} for 50 randomly selected values of $\lambda$. More specifically, the metric used in Figure \ref{f:HessianDecayN30Tau1} is:
+Let us investigate the consistency of the decay with respect to $\lambda$. The maximal absolute value of the elements in $\nabla^2 d(\lambda, \tau)$ for given distances from its diagonal, are visualized in Figure \ref{f:HessianDecayN30Tau1} for 50 randomly selected values of $\lambda$. More specifically, the measure used in Figure \ref{f:HessianDecayN30Tau1} is:
 \begin{equation}
 \begin{aligned}
 \max_{i,j} & \quad | [\nabla^2 d(\lambda,\tau)]_{i,j} | \\
@@ -742,9 +784,9 @@ Observe that for this example, at all evaluated points $\lambda$, the dual Hessi
 \label{fig:test}
 \end{figure}
 
-As discussed previously, the conditioning of $\Lambda_k$ affects the decaying property and small values of $\tau$ would therefore possibly lead to a slower decay. Corresponding figures to Figure \ref{f:HessianSpyN30Tau1} and Figure \ref{f:HessianDecayN30Tau1}, for $\tau = 10^{-6}$, are shown in Figure \ref{f:HessianSpyN30Tau10minus6} and Figure \ref{f:HessianDecayN30Tau10minus6} respectively. Observe that, for this example, there is no significant difference in the decay between the different values of $\tau$. This is also consistent with what we have observed in experiments with other problems.
+As discussed previously, the conditioning of $\Lambda_k$ affects the decaying property and small values of $\tau$ would therefore possibly lead to a slower decay. Corresponding figures to Figure \ref{f:HessianSpyN30Tau1} and Figure \ref{f:HessianDecayN30Tau1}, for $\tau = 10^{-6}$, are shown in Figure \ref{f:HessianSpyN30Tau10minus6} and Figure \ref{f:HessianDecayN30Tau10minus6} respectively. Observe that, for this example, there is no significant difference in the decay between the different values of $\tau$. This observation pertain to all experiments we have seen so far.
 
-The parameter, that according to our experiments, has the strongest impact on the decaying is the length of the horizon. To illustrate this, we generate another random problem with $N=10$, and all other dimensions being the same as before. The dual Hessian at the solution $\lambda^*(\tau)$, for $\tau=1$ is visualized in Figure \ref{f:HessianSpyN10Tau1}. Observe that the dual Hessian also in this case has a clear decay towards the off-diagonal corners. The band with elements of a significant magnitude is however wider compared to the size of the matrix. Moreover, the decaying property is visualized for $50$ different values of $\lambda$ in Figure \ref{f:HessianDecayN10Tau1}. Note that in this figure it is easier to see that there is a smaller difference between the diagonal and the off-diagonal elements.
+The parameter that seems to have the strongest impact on the decaying is the horizon length. To illustrate this, we generate another random problem with $N=10$, and all other dimensions being the same as before. The dual Hessian at the solution $\lambda^*(\tau)$, for $\tau=1$ is visualized in Figure \ref{f:HessianSpyN10Tau1}. Observe that the dual Hessian also in this case has a clear decay towards the off-diagonal corners. The band with elements of a significant magnitude is however wider compared to the size of the matrix. Moreover, the decaying property is visualized for $50$ different values of $\lambda$ in Figure \ref{f:HessianDecayN10Tau1}. Note that in this figure it is easier to see that there is a smaller difference between the diagonal and the off-diagonal elements.
 
 \begin{figure}[h]
   \centering
@@ -760,6 +802,8 @@ The parameter, that according to our experiments, has the strongest impact on th
   \label{f:HessianDecayN10Tau1}
 \end{figure}
 
+\section{Conclusions}
+Bla bla bla
 
 %\begin{acknowledgements}
 %If you'd like to thank anyone, place your comments here
