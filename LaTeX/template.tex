@@ -117,8 +117,7 @@ grestore
 \maketitle
 
 \begin{abstract}
-This paper studies the quasi-banded structure in the Hessian of the dual function, originating from many distributed Model Predictive Control (MPC) problems. Due to the quasi-structure, we find a banded approximation of the dual Hessian, for which structure exploiting factorization methods can be used. Moreover, we show that the approximation can be used to form a quasi-Newton method. Especially for problems with a long horizon, the quasi-Newton method can find good approximations of the Newton direction, by only considering a fraction of the elements in the dual Hessian. The quasi-structure is present when both interior-point methods and active-set methods are used to solve the subproblems.
-
+This paper shows that the Hessian of the dual function arising in the dual decomposition of distributed Model Predictive Control (MPC) problems has a quasi-banded structure. This structure is exploited to form a banded approximation of the dual Hessian, for which structure exploiting factorization methods can be used. We show that this approximation can be used to deploy a quasi-Newton method with fast convergence properties. For distributed MPC problems with a long horizon, this approach yields a large reduction of computational complexity. The quasi-banded structure arises both in the case primal-dual interior-point methods and active-set methods are used to solve the subproblems.
 \keywords{First keyword \and Second keyword \and More}
 % \PACS{PACS code1 \and PACS code2 \and more}
 % \subclass{MSC code1 \and MSC code2 \and more}
