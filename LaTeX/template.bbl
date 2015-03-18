@@ -6,6 +6,11 @@
   \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 
+\bibitem{Alessio2011}
+Alessio, A., Barcelli D.~Bemporad, A.: Decentralized model predictive control
+  of dynamically coupled linear systems.
+\newblock Journal of Process Control \textbf{21}, 705--714 (2011)
+
 \bibitem{Benzi2002}
 Benzi, M.: Preconditioning techniques for large linear systems: a survey.
 \newblock Journal of Computational Physics \textbf{182}, 418--477 (2002)
@@ -71,6 +76,10 @@ Giselsson, P., Rantzer, A.: Distributed model predictive control with
   7272--7277 (2010).
 \newblock \doi{10.1109/CDC.2010.5717026}
 
+\bibitem{Giselsson2014b}
+Giselsson P.and~Boyd, S.: Preconditioning in fast dual gradient methods.
+\newblock In: IEEE Conference on Decision and Control (2014)
+
 \bibitem{Gros2014a}
 Gros, S.: A distributed algorithm for nmpc-based wind farm control.
 \newblock In: Conference on Decision and Control (2014)
@@ -78,11 +87,6 @@ Gros, S.: A distributed algorithm for nmpc-based wind farm control.
 \bibitem{HornR2013}
 Horn, R.A., Johnson, C.R.: Matrix Analysis - 2nd ed.
 \newblock Cambridge University Press (2013)
-
-\bibitem{Hult2015}
-Hult, R., Campos, G., Falcone, P., Wymeersch, H.: An approximate solution to
-  the optimal coordination problem for autonomous vehicles at intersections.
-\newblock In: American Control Conference (2015)
 
 \bibitem{Klintberg2014}
 Klintberg, E., Gros, S.: A primal-dual newton method for distributed quadratic
@@ -117,6 +121,11 @@ Kozma, A., Savorgnan, C., Diehl, M.: Distributed Model Predictive Control Made
 \bibitem{Lasdon1970}
 Lasdon, L.S.: {Optimization theory for Large Systems}.
 \newblock Dover (1970)
+
+\bibitem{Magni2006}
+Magni, L., Scattolini, R.: {S}tabilizing decentralized model predictive control
+  of nonlinear systems.
+\newblock Automatica \textbf{42}, 1231--1236 (2006)
 
 \bibitem{Necoara2014a}
 Necoara, I., Nedelcu, V.: Rate analysis of inexact dual first-order methods
@@ -158,6 +167,11 @@ Perizzato, A., Farina, M., Scattolini, R.: Stochastic distributed predictive
   control of independent systems with coupling constraints.
 \newblock In: Conference on Decision and Control (2014)
 
+\bibitem{Rawlings2008}
+Rawlings, J., Stewart, B.: Coordinating multiple optimization-based
+  controllers: New opportunities and challenges.
+\newblock Journal of Process Control \textbf{18}, 839--845 (2008)
+
 \bibitem{Richter2011}
 Richter, S., Morari, M., Jones, C.: Towards computational complexity
   certification for constrained {MPC} based on {L}agrange {R}elaxation and the
@@ -166,11 +180,21 @@ Richter, S., Morari, M., Jones, C.: Towards computational complexity
   2011 50th IEEE Conference on, pp. 5223 --5229 (2011).
 \newblock \doi{10.1109/CDC.2011.6160931}
 
+\bibitem{Stewart2010}
+Stewart, B., Rawlings, J., Wright, S.: Hierarchical cooperative distributed
+  model predictive control.
+\newblock In: American Control Conference (2010)
+
 \bibitem{Quoc2013}
 Tran, D.Q., Necoara, I., Savorgnan, C., Diehl, M.: An inexact perturbed
   path-following method for lagrangian decomposition in large-scale separable
   convex optimization.
 \newblock SIAM Journal on Optimization \textbf{23}, 95--125 (2013)
+
+\bibitem{Venkat2005}
+Venkat, A., Rawlings, J., Wright, S.: Stability and optimality of distributed
+  model predictive control.
+\newblock In: Conference on Decision and Control (2005)
 
 \bibitem{WrightM1998}
 Wright, M.: Ill-conditioning and computational error in interior methods for

@@ -914,6 +914,18 @@
 	matrix;nonlinear programming;nonlinear systems;observability;}
 }
 
+@ARTICLE{Alessio2011,
+  author = {Alessio, A. and Barcelli, D. Bemporad, A.},
+  title = {Decentralized model predictive control of dynamically coupled linear
+	systems},
+  journal = {Journal of Process Control},
+  year = {2011},
+  volume = {21},
+  pages = {705-714},
+  owner = {emilklintberg},
+  timestamp = {2015.03.03}
+}
+
 @INBOOK{Alessio2009,
   chapter = {A Survey on Explicit Model Predictive Control},
   pages = {345--369},
@@ -14237,6 +14249,15 @@
   keywords = {OPTEC-library},
   owner = {csavorgn},
   timestamp = {2009.10.28}
+}
+
+@CONFERENCE{Gros2014a,
+  author = {Gros, S},
+  title = {A Distributed Algorithm for NMPC-based Wind Farm Control},
+  booktitle = {Conference on Decision and Control},
+  year = {2014},
+  owner = {emilklintberg},
+  timestamp = {2015.03.02}
 }
 
 @CONFERENCE{Gros2012b,
@@ -32016,6 +32037,15 @@
   number = {6},
   owner = {quoctd},
   timestamp = {2012.04.09}
+}
+
+@CONFERENCE{Venkat2005,
+  author = {Venkat, A. and Rawlings, J. and Wright, S.},
+  title = {Stability and optimality of distributed model predictive control},
+  booktitle = {Conference on Decision and Control},
+  year = {2005},
+  owner = {emilklintberg},
+  timestamp = {2015.03.03}
 }
 
 @TECHREPORT{Venkat2006a,
