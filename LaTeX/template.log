@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  18 MAR 2015 14:11
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  18 MAR 2015 15:05
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -244,20 +244,20 @@ LaTeX Warning: Label `e:Lambda' multiply defined.
 )
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
 
 Unknown journal: specify \journalname{<name of your journal>} in preambel
 
@@ -337,17 +337,17 @@ See the caption package documentation for explanation.
 
 Package caption Info: End \AtBeginDocument code.
 SVJour3 warning: Missing \journalname
-LaTeX Font Info:    Try loading font information for U+msa on input line 112.
+LaTeX Font Info:    Try loading font information for U+msa on input line 117.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 112.
+LaTeX Font Info:    Try loading font information for U+msb on input line 117.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
  [3] [4]
-Overfull \hbox (0.22914pt too wide) in paragraph at lines 210--213
+Overfull \hbox (0.22914pt too wide) in paragraph at lines 215--218
 \U/msb/m/n/10 R[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 2 \
 U/msb/m/n/10 R[]$\OT1/cmr/m/n/10 , $\OML/cmm/m/it/10 G[] \OMS/cmsy/m/n/10 2 \U/
 msb/m/n/10 R[]$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 f[] \OMS/cmsy/m/n/10 2 \U
@@ -359,7 +359,7 @@ Underfull \vbox (badness 4582) has occurred while \output is active []
 
  [5]
 [6] [7]
-Overfull \hbox (12.21931pt too wide) in paragraph at lines 305--306
+Overfull \hbox (12.21931pt too wide) in paragraph at lines 310--311
 []\OT1/cmr/m/n/10 Recall that in or-der to find the so-lu-tion $\OML/cmm/m/it/1
 0 ^^U[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 )$ to the dual prob
 -lem $[][] \OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U; ^^\\OT1/cmr
@@ -367,13 +367,13 @@ Overfull \hbox (12.21931pt too wide) in paragraph at lines 305--306
  []
 
 [8] [9]
-Overfull \hbox (3.61743pt too wide) in paragraph at lines 434--435
+Overfull \hbox (3.61743pt too wide) in paragraph at lines 439--440
 []\OT1/cmr/m/it/10 The row and col-umn ab-so-lute sums of $\OML/cmm/m/it/10 ^^H
 []$ \OT1/cmr/m/it/10 are bounded. Hence: 
  []
 
 [10] [11] [12] [13] [14] [15]
-Overfull \hbox (10.53824pt too wide) in paragraph at lines 647--648
+Overfull \hbox (10.53824pt too wide) in paragraph at lines 654--655
 []\OT1/cmr/m/n/10 We have al-ready es-tab-lished that the eigen-val-ues of $\OM
 S/cmsy/m/n/10 br[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^U; ^^\\
 OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 e[] ^^@ r[]\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 (
@@ -390,7 +390,7 @@ ted-to.pdf>
 (epstopdf)                    size: 26103 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyLongHor
 izon-eps-converted-to.pdf ./Figures/HessianSpyLongHorizon.eps>
-(epstopdf)             \includegraphics on input line 843.
+(epstopdf)             \includegraphics on input line 850.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianSpyLongHorizon-eps-converted-to.pdf, id=82, 433.62pt x 433.62
@@ -399,7 +399,7 @@ File: ./Figures/HessianSpyLongHorizon-eps-converted-to.pdf Graphic file (type p
 df)
  <use ./Figures/HessianSpyLongHorizon-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianSpyLongHorizon-eps-converted-to.pdf u
-sed on input line 843.
+sed on input line 850.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 Underfull \vbox (badness 1389) has occurred while \output is active []
@@ -414,7 +414,7 @@ rted-to.pdf>
 (epstopdf)                    size: 15578 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/ConvergenceLongHo
 rizon-eps-converted-to.pdf ./Figures/ConvergenceLongHorizon.eps>
-(epstopdf)             \includegraphics on input line 867.
+(epstopdf)             \includegraphics on input line 874.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/ConvergenceLongHorizon-eps-converted-to.pdf, id=99, 578.16pt x 433.6
@@ -423,7 +423,7 @@ File: ./Figures/ConvergenceLongHorizon-eps-converted-to.pdf Graphic file (type
 pdf)
  <use ./Figures/ConvergenceLongHorizon-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/ConvergenceLongHorizon-eps-converted-to.pdf 
-used on input line 867.
+used on input line 874.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 Package epstopdf Info: Source file: <./Figures/HessianDecayLongHorizon.eps>
 (epstopdf)                    date: 2015-03-12 13:44:46
@@ -434,7 +434,7 @@ erted-to.pdf>
 (epstopdf)                    size: 43244 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianDecayLongH
 orizon-eps-converted-to.pdf ./Figures/HessianDecayLongHorizon.eps>
-(epstopdf)             \includegraphics on input line 883.
+(epstopdf)             \includegraphics on input line 890.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianDecayLongHorizon-eps-converted-to.pdf, id=100, 578.16pt x 433
@@ -443,7 +443,7 @@ File: ./Figures/HessianDecayLongHorizon-eps-converted-to.pdf Graphic file (type
  pdf)
  <use ./Figures/HessianDecayLongHorizon-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianDecayLongHorizon-eps-converted-to.pdf
- used on input line 883.
+ used on input line 890.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 
 
@@ -459,7 +459,7 @@ rted-to.pdf>
 (epstopdf)                    size: 24114 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/HessianSpyShortHo
 rizon-eps-converted-to.pdf ./Figures/HessianSpyShortHorizon.eps>
-(epstopdf)             \includegraphics on input line 896.
+(epstopdf)             \includegraphics on input line 903.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/HessianSpyShortHorizon-eps-converted-to.pdf, id=134, 433.62pt x 433.
@@ -468,7 +468,7 @@ File: ./Figures/HessianSpyShortHorizon-eps-converted-to.pdf Graphic file (type
 pdf)
  <use ./Figures/HessianSpyShortHorizon-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/HessianSpyShortHorizon-eps-converted-to.pdf 
-used on input line 896.
+used on input line 903.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
 
@@ -483,7 +483,7 @@ erted-to.pdf>
 (epstopdf)                    size: 15551 bytes
 (epstopdf)             Command: <epstopdf --outfile=./Figures/ConvergenceShortH
 orizon-eps-converted-to.pdf ./Figures/ConvergenceShortHorizon.eps>
-(epstopdf)             \includegraphics on input line 918.
+(epstopdf)             \includegraphics on input line 925.
 Package epstopdf Info: Output file is already uptodate.
 
 <./Figures/ConvergenceShortHorizon-eps-converted-to.pdf, id=135, 578.16pt x 433
@@ -492,7 +492,7 @@ File: ./Figures/ConvergenceShortHorizon-eps-converted-to.pdf Graphic file (type
  pdf)
  <use ./Figures/ConvergenceShortHorizon-eps-converted-to.pdf>
 Package pdftex.def Info: ./Figures/ConvergenceShortHorizon-eps-converted-to.pdf
- used on input line 918.
+ used on input line 925.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 
 
@@ -509,10 +509,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4273 strings out of 493488
- 64994 string characters out of 3141326
- 124665 words of memory out of 3000000
- 7516 multiletter control sequences out of 15000+200000
+ 4274 strings out of 493488
+ 64998 string characters out of 3141326
+ 124729 words of memory out of 3000000
+ 7517 multiletter control sequences out of 15000+200000
  13818 words of font info for 51 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,38p,1059b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -536,7 +536,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on template.pdf (26 pages, 421282 bytes).
+Output written on template.pdf (26 pages, 421738 bytes).
 PDF statistics:
  277 PDF objects out of 1000 (max. 8388607)
  139 compressed objects within 2 object streams
